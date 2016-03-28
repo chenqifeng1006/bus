@@ -54,6 +54,8 @@ public class DriverService {
 	}
 	
 	public void delete(Driver driver){
+		int driverId = driver.getId();
+		this.busMapper.removeDriver(driverId);
 		this.driverMapper.delete(driver);
 	}
 	
@@ -79,5 +81,8 @@ public class DriverService {
 		this.busMapper.update(bus);
 	}
 	
+	public void removeBus(int busId){
+		this.driverMapper.removeBus(busId);
+	}
 
 }

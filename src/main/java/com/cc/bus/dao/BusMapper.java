@@ -22,4 +22,8 @@ public interface BusMapper {
 	
 	int countByLineId(Bus bus);
 	
+	void removeDriver(int driverId);
+	
+	void removeLine(int lineId);
+	
 }

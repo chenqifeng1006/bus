@@ -25,4 +25,6 @@ public interface DriverMapper {
 	void delete(Driver driver);
 	
 	Driver getById(Driver driver);
+	
+	void removeBus(int busId);
 }

@@ -80,6 +80,15 @@
         	id=#{id}
     </update>
     
+    <update id="removeBus"  parameterType="Integer">
+       	UPDATE 
+        	driver 
+        SET 
+            busId=0
+        WHERE 
+        	busId=#{busId}
+    </update>
+    
     <update id="updatePassword"  parameterType="com.cc.driver.dto.Driver">
         UPDATE 
         	driver 

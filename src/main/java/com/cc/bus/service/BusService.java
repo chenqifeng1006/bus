@@ -46,6 +46,8 @@ public class BusService {
 	}
 	
 	public void delete(Bus bus){
+		int busId = bus.getId();
+		this.driverMapper.removeBus(busId);
 		this.busMapper.delete(bus);
 	}
 	
@@ -83,6 +85,14 @@ public class BusService {
 		Bus bus = this.busMapper.getById(b);
 		bus.setLineId(0);
 		this.busMapper.update(bus);
+	}
+	
+	public void removeDriver(int driverId){
+		this.busMapper.removeDriver(driverId);
+	}
+	
+	public void removeLine(int lineId){
+		this.busMapper.removeLine(lineId);
 	}
 	
 

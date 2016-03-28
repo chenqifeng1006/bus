@@ -75,6 +75,24 @@
         	id=#{id}
     </update>
     
+    <update id="removeDriver"  parameterType="Integer">
+        UPDATE 
+        	bus 
+        SET 
+            driverId=0
+        WHERE 
+        	driverId=#{driverId}
+    </update>
+    
+    <update id="removeLine"  parameterType="Integer">
+        UPDATE 
+        	bus 
+        SET 
+            lineId=0
+        WHERE 
+        	lineId=#{lineId}
+    </update>
+    
     <delete id="delete">
     	DELETE FROM bus WHERE id=#{id}
     </delete>

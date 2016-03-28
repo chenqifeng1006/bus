@@ -144,4 +144,14 @@ public class DriverController extends BaseController {
 		return new JsonSuccess();
 	}
 	
+	
+	@RequestMapping(value = "/removeBus")
+	@ResponseBody
+	public JsonObject removeBus(int busId) throws Exception {
+		
+		this.driverService.removeBus(busId);
+		
+		return new JsonSuccess();
+	}
+	
 }

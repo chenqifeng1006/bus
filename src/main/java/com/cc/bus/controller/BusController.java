@@ -148,4 +148,22 @@ public class BusController extends BaseController {
 		return new JsonSuccess();
 	}
 	
+	@RequestMapping(value = "/removeDriver")
+	@ResponseBody
+	public JsonObject removeDriver(int driverId) throws Exception {
+		
+		this.busService.removeDriver(driverId);
+		
+		return new JsonSuccess();
+	}
+	
+	@RequestMapping(value = "/removeLine")
+	@ResponseBody
+	public JsonObject removeLine(int lineId) throws Exception {
+		
+		this.busService.removeLine(lineId);
+		
+		return new JsonSuccess();
+	}
+	
 }

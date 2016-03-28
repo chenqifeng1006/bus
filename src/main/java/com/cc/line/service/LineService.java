@@ -42,6 +42,8 @@ public class LineService {
 	}
 	
 	public void delete(Line line){
+		int lineId = line.getId();
+		this.busMapper.removeLine(lineId);
 		this.lineMapper.delete(line);
 	}
 	
