@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cc.user.dao.UserMapper">
-    <resultMap type="User" id="UserMap">
+<mapper namespace="com.cc.driver.dao.DriverMapper">
+    <resultMap type="Driver" id="DriverMap">
     </resultMap>
     
     
     
-    <select id="queryList" parameterType="com.utils.common.JPage" resultMap="UserMap">
+    <select id="queryList" parameterType="com.utils.common.JPage" resultMap="DriverMap">
     	SELECT 
     		* 
     	FROM 
-    		user 
+    		driver 
     	LIMIT #{startNum},#{pageCount}
     </select>
     
@@ -18,45 +18,45 @@
 		SELECT
 			COUNT(id)
 		FROM
-			user
+			driver
     </select>
     
     
-    <select id="getByLoginId" parameterType="String" resultMap="UserMap">
+    <select id="getByLoginId" parameterType="String" resultMap="DriverMap">
     	SELECT 
     		*
     	FROM 
-    		user 
+    		driver 
    		WHERE
    			loginId=#{loginId}
     </select>
     
     
-    <insert id="add" parameterType="com.cc.user.dto.User" useGeneratedKeys="true">
+    <insert id="add" parameterType="com.cc.driver.dto.Driver" useGeneratedKeys="true">
         INSERT INTO 
-        	user 
-        	(loginId,password,username,telephone,cardNo)
+        	driver 
+        	(loginId,password,drivername,telephone,cardNo)
         VALUES 
-        	(#{loginId},#{password},#{username},#{telephone},#{cardNo})
+        	(#{loginId},#{password},#{drivername},#{telephone},#{cardNo})
     </insert>
     
     
-    <update id="updateInfo"  parameterType="com.cc.user.dto.User">
+    <update id="updateInfo"  parameterType="com.cc.driver.dto.Driver">
         UPDATE 
-        	user 
+        	driver 
         SET 
-            username=#{username},
+            drivername=#{drivername},
             telephone=#{telephone},
             cardNo=#{cardNo}
         WHERE 
         	id=#{id}
     </update>
     
-    <update id="update"  parameterType="com.cc.user.dto.User">
+    <update id="update"  parameterType="com.cc.driver.dto.Driver">
         UPDATE 
-        	user 
+        	driver 
         SET 
-            username=#{username},
+            drivername=#{drivername},
             telephone=#{telephone},
             cardNo=#{cardNo},
             password=#{password}
@@ -64,9 +64,9 @@
         	id=#{id}
     </update>
     
-    <update id="updatePassword"  parameterType="com.cc.user.dto.User">
+    <update id="updatePassword"  parameterType="com.cc.driver.dto.Driver">
         UPDATE 
-        	user 
+        	driver 
         SET 
             password=#{password}
         WHERE 
@@ -74,7 +74,7 @@
     </update>
     
 	<delete id="delete">
-    	DELETE FROM user WHERE id=#{id}
+    	DELETE FROM driver WHERE id=#{id}
     </delete>
 
 </mapper>

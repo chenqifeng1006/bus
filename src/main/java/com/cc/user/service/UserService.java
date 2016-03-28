@@ -27,6 +27,10 @@ public class UserService {
 		return this.userMapper.getByLoginId(loginId);
 	}
 	
+	public void update(User user){
+		this.userMapper.update(user);
+	}
+	
 	public void updateInfo(User user){
 		this.userMapper.updateInfo(user);
 	}
@@ -38,5 +42,9 @@ public class UserService {
 	
 	public int add(User user){
 		return this.userMapper.add(user);
+	}
+	
+	public void delete(User user){
+		this.userMapper.delete(user);
 	}
 }

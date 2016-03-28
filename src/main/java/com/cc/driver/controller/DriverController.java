@@ -1,4 +1,4 @@
-package com.cc.admin.controller;
+package com.cc.driver.controller;
 
 import java.util.List;
 
@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.cc.admin.dto.Admin;
-import com.cc.admin.service.AdminService;
 import com.cc.base.BaseController;
+import com.cc.bus.dto.Bus;
+import com.cc.driver.dto.Driver;
+import com.cc.driver.service.DriverService;
 import com.utils.common.JPage;
 import com.utils.common.PageDTO;
 import com.utils.json.JsonData;
@@ -25,26 +26,26 @@ import com.utils.token.CookieHandler;
 
 
 @Controller
-@RequestMapping("admin")
-public class AdminController extends BaseController {
+@RequestMapping("driver")
+public class DriverController extends BaseController {
 	
 	@Autowired
 	private CookieHandler cookieHandler;
 	@Autowired
-	private AdminService adminService;
+	private DriverService driverService;
 	
 
 	@RequestMapping(value = "/login")
 	@ResponseBody
-	public JsonObject login(@Validated Admin admin,HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public JsonObject login(@Validated Driver driver,HttpServletRequest request,HttpServletResponse response) throws Exception {
 
-		String loginId = admin.getLoginId();
+		String loginId = driver.getLoginId();
 		
-		Admin item = this.adminService.getByLoginId(loginId);
+		Driver item = this.driverService.getByLoginId(loginId);
 		
 		if(item == null){
 			throw new Exception("用户不存在");
-		}else if(!item.getPassword().equals(admin.getPassword())){
+		}else if(!item.getPassword().equals(driver.getPassword())){
 			throw new Exception("密码不正确");
 		}
 		
@@ -53,42 +54,32 @@ public class AdminController extends BaseController {
 	
 	@RequestMapping(value = "/add")
 	@ResponseBody
-	public JsonObject add(@Validated Admin admin,HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public JsonObject add(@Validated Driver driver,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		
-		int id = this.adminService.add(admin);
+		int id = this.driverService.add(driver);
 		
 		return new JsonData(id);
 	}
 	
 	
-	@RequestMapping(value = "/update")
-	@ResponseBody
-	public JsonObject update(@Validated Admin admin,HttpServletRequest request,HttpServletResponse response) throws Exception {
-		
-		
-		this.adminService.update(admin);
-		
-		return new JsonData(admin);
-	}
-	
 	
 	@RequestMapping(value = "/updateInfo")
 	@ResponseBody
-	public JsonObject updateInfo(@Validated Admin admin,HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public JsonObject updateInfo(@Validated Driver driver,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		
 		
-		this.adminService.updateInfo(admin);
+		this.driverService.updateInfo(driver);
 		
-		return new JsonData(admin);
+		return new JsonData(driver);
 	}
 	
 	@RequestMapping(value = "/updatePassword")
 	@ResponseBody
-	public JsonObject updatePassword(@Validated Admin admin,HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public JsonObject updatePassword(@Validated Driver driver,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		
-		this.adminService.updatePassword(admin);
+		this.driverService.updatePassword(driver);
 		
-		return new JsonData(admin);
+		return new JsonData(driver);
 	}
 	
 	@RequestMapping(value = "/queryList")
@@ -97,8 +88,8 @@ public class AdminController extends BaseController {
 			@RequestParam(value = "startNum", defaultValue = "0") Integer startNum,
 			@RequestParam(value = "pageCount", defaultValue = "10") Integer pageCount) throws Exception {
 		JPage page = new JPage(startNum,pageCount);
-		List<Admin> list = this.adminService.queryList(page);		
-		int count = this.adminService.count();
+		List<Driver> list = this.driverService.queryList(page);		
+		int count = this.driverService.count();
 		int currentPage = startNum/pageCount + 1;
 		PageDTO dto = new PageDTO();		
 		dto.setList(list);
@@ -111,12 +102,11 @@ public class AdminController extends BaseController {
 	
 	@RequestMapping(value = "/delete")
 	@ResponseBody
-	public JsonObject delete(@Validated Admin admin,HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public JsonObject delete(@Validated Driver driver,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		
-		this.adminService.delete(admin);
+		this.driverService.delete(driver);
 		
 		return new JsonSuccess();
 	}
-	
 	
 }

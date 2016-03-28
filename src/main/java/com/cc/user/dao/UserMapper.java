@@ -13,10 +13,14 @@ public interface UserMapper {
 	
 	int count();
 	
+	void update(User user);
+	
 	void updateInfo(User user);
 	
 	void updatePassword(User user);
 	
 	int add(User user);
+	
+	void delete(User user);
 	
 }

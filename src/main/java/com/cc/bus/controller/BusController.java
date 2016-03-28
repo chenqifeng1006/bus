@@ -42,14 +42,7 @@ public class BusController extends BaseController {
 		return new JsonData(id);
 	}
 	
-	@RequestMapping(value = "/delete")
-	@ResponseBody
-	public JsonObject delete(@Validated Bus bus,HttpServletRequest request,HttpServletResponse response) throws Exception {
-		
-		this.busService.delete(bus);
-		
-		return new JsonSuccess();
-	}
+	
 	
 	@RequestMapping(value = "/update")
 	@ResponseBody
@@ -79,5 +72,13 @@ public class BusController extends BaseController {
 		return new JsonData(dto);
 	}
 	
+	@RequestMapping(value = "/delete")
+	@ResponseBody
+	public JsonObject delete(@Validated Bus bus,HttpServletRequest request,HttpServletResponse response) throws Exception {
+		
+		this.busService.delete(bus);
+		
+		return new JsonSuccess();
+	}
 	
 }

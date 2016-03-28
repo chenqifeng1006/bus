@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.cc.admin.dto.Admin;
 import com.cc.base.BaseController;
 import com.cc.user.dto.User;
 import com.cc.user.service.UserService;
@@ -20,6 +19,7 @@ import com.utils.common.JPage;
 import com.utils.common.PageDTO;
 import com.utils.json.JsonData;
 import com.utils.json.JsonObject;
+import com.utils.json.JsonSuccess;
 import com.utils.token.CookieHandler;
 
 
@@ -97,6 +97,15 @@ public class UserController extends BaseController {
 		dto.setCurrentPage(currentPage);
 		dto.setPageCount(pageCount);			
 		return new JsonData(dto);
+	}
+	
+	@RequestMapping(value = "/delete")
+	@ResponseBody
+	public JsonObject delete(@Validated User user,HttpServletRequest request,HttpServletResponse response) throws Exception {
+		
+		this.userService.delete(user);
+		
+		return new JsonSuccess();
 	}
 	
 	
