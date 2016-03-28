@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cc.record.dto.Record;
 import com.cc.user.dao.UserMapper;
 import com.cc.user.dto.User;
 import com.utils.common.JPage;
@@ -47,4 +48,10 @@ public class UserService {
 	public void delete(User user){
 		this.userMapper.delete(user);
 	}
+	
+	public User getById(User user){
+		return this.userMapper.getById(user);
+	}
+	
+	
 }

@@ -22,6 +22,16 @@
     </select>
     
     
+    <select id="getById" parameterType="com.cc.driver.dto.Driver" resultMap="DriverMap">
+		SELECT
+			*
+		FROM
+			driver
+		WHERE
+			id=#{id}
+    </select>
+    
+    
     <select id="getByLoginId" parameterType="String" resultMap="DriverMap">
     	SELECT 
     		*

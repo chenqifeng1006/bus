@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cc.admin.dto.Admin;
 import com.cc.base.BaseController;
 import com.cc.bus.dto.Bus;
 import com.cc.bus.service.BusService;
@@ -70,6 +71,13 @@ public class BusController extends BaseController {
 		dto.setCurrentPage(currentPage);
 		dto.setPageCount(pageCount);			
 		return new JsonData(dto);
+	}
+	
+	@RequestMapping(value = "/getById")
+	@ResponseBody
+	public JsonObject getById(@Validated Bus bus,HttpServletRequest request,HttpServletResponse response) throws Exception {
+		
+		return new JsonData(this.busService.getById(bus));
 	}
 	
 	@RequestMapping(value = "/delete")

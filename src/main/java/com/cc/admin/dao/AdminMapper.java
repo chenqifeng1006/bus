@@ -22,4 +22,6 @@ public interface AdminMapper {
 	int add(Admin admin);
 	
 	void delete(Admin admin);
+	
+	Admin getById(Admin admin);
 }

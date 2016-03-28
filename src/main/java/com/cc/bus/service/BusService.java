@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cc.admin.dto.Admin;
 import com.cc.bus.dao.BusMapper;
 import com.cc.bus.dto.Bus;
 import com.utils.common.JPage;
@@ -33,6 +34,10 @@ public class BusService {
 	
 	public void delete(Bus bus){
 		this.busMapper.delete(bus);
+	}
+	
+	public Bus getById(Bus bus){
+		return this.busMapper.getById(bus);
 	}
 	
 

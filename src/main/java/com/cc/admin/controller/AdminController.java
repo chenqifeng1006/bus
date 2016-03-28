@@ -91,6 +91,14 @@ public class AdminController extends BaseController {
 		return new JsonData(admin);
 	}
 	
+	@RequestMapping(value = "/getById")
+	@ResponseBody
+	public JsonObject getById(@Validated Admin admin,HttpServletRequest request,HttpServletResponse response) throws Exception {
+		
+		return new JsonData(this.adminService.getById(admin));
+	}
+	
+	
 	@RequestMapping(value = "/queryList")
 	@ResponseBody
 	public JsonObject queryList(HttpServletRequest request,HttpServletResponse response,

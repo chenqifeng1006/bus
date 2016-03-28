@@ -21,6 +21,17 @@
     </select>
     
     
+    <select id="getById" parameterType="com.cc.bus.dto.Bus" resultMap="BusMap">
+		SELECT
+			*
+		FROM
+			bus
+		WHERE
+			id=#{id}
+    </select>
+    
+    
+    
     <insert id="add" parameterType="com.cc.bus.dto.Bus" useGeneratedKeys="true">
         INSERT INTO 
         	bus 

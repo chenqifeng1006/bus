@@ -48,5 +48,9 @@ public class AdminService {
 		this.adminMapper.delete(admin);
 	}
 	
+	public Admin getById(Admin admin){
+		return this.adminMapper.getById(admin);
+	}
+	
 
 }

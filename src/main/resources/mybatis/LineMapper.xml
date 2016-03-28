@@ -22,6 +22,15 @@
     </select>
     
     
+    <select id="getById" parameterType="com.cc.line.dto.Line" resultMap="LineMap">
+		SELECT
+			*
+		FROM
+			line
+		WHERE
+			id=#{id}
+    </select>
+    
     
     
     <insert id="add" parameterType="com.cc.line.dto.Line" useGeneratedKeys="true">

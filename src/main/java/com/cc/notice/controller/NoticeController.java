@@ -1,4 +1,4 @@
-package com.cc.line.controller;
+package com.cc.notice.controller;
 
 import java.util.List;
 
@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cc.base.BaseController;
-import com.cc.driver.dto.Driver;
-import com.cc.line.dto.Line;
-import com.cc.line.service.LineService;
+import com.cc.message.dto.Message;
+import com.cc.notice.dto.Notice;
+import com.cc.notice.service.NoticeService;
 import com.utils.common.JPage;
 import com.utils.common.PageDTO;
 import com.utils.json.JsonData;
@@ -26,37 +26,25 @@ import com.utils.token.CookieHandler;
 
 
 @Controller
-@RequestMapping("line")
-public class LineController extends BaseController {
+@RequestMapping("notice")
+public class NoticeController extends BaseController {
 	
 	@Autowired
 	private CookieHandler cookieHandler;
 	@Autowired
-	private LineService lineService;
+	private NoticeService noticeService;
 	
-
 	
 	@RequestMapping(value = "/add")
 	@ResponseBody
-	public JsonObject add(@Validated Line line,HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public JsonObject add(@Validated Notice notice,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		
-		int id = this.lineService.add(line);
+		int id = this.noticeService.add(notice);
 		
 		return new JsonData(id);
 	}
 	
-	
-	@RequestMapping(value = "/update")
-	@ResponseBody
-	public JsonObject update(@Validated Line line,HttpServletRequest request,HttpServletResponse response) throws Exception {
-		
-		
-		this.lineService.update(line);
-		
-		return new JsonData(line);
-	}
-	
-	
+
 	
 	@RequestMapping(value = "/queryList")
 	@ResponseBody
@@ -64,8 +52,8 @@ public class LineController extends BaseController {
 			@RequestParam(value = "startNum", defaultValue = "0") Integer startNum,
 			@RequestParam(value = "pageCount", defaultValue = "10") Integer pageCount) throws Exception {
 		JPage page = new JPage(startNum,pageCount);
-		List<Line> list = this.lineService.queryList(page);		
-		int count = this.lineService.count();
+		List<Notice> list = this.noticeService.queryList(page);		
+		int count = this.noticeService.count();
 		int currentPage = startNum/pageCount + 1;
 		PageDTO dto = new PageDTO();		
 		dto.setList(list);
@@ -78,17 +66,16 @@ public class LineController extends BaseController {
 	
 	@RequestMapping(value = "/getById")
 	@ResponseBody
-	public JsonObject getById(@Validated Line line,HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public JsonObject getById(@Validated Notice notice,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		
-		return new JsonData(this.lineService.getById(line));
+		return new JsonData(this.noticeService.getById(notice));
 	}
-	
 	
 	@RequestMapping(value = "/delete")
 	@ResponseBody
-	public JsonObject delete(@Validated Line line,HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public JsonObject delete(@Validated Notice notice,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		
-		this.lineService.delete(line);
+		this.noticeService.delete(notice);
 		
 		return new JsonSuccess();
 	}

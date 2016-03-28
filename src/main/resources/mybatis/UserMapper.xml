@@ -21,6 +21,15 @@
 			user
     </select>
     
+    <select id="getById" parameterType="com.cc.user.dto.User" resultMap="UserMap">
+		SELECT
+			*
+		FROM
+			user
+		WHERE
+			id=#{id}
+    </select>
+    
     
     <select id="getByLoginId" parameterType="String" resultMap="UserMap">
     	SELECT 

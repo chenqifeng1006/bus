@@ -23,4 +23,6 @@ public interface UserMapper {
 	
 	void delete(User user);
 	
+	User getById(User user);
+	
 }

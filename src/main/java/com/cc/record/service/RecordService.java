@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cc.notice.dto.Notice;
 import com.cc.record.dao.RecordMapper;
 import com.cc.record.dto.Record;
 import com.utils.common.JPage;
@@ -37,4 +38,9 @@ public class RecordService {
 	public void delete(Record record){
 		this.recordMapper.delete(record);
 	}
+	
+	public Record getById(Record record){
+		return this.recordMapper.getById(record);
+	}
+	
 }

@@ -2,6 +2,7 @@ package com.cc.driver.dao;
 
 import java.util.List;
 
+import com.cc.bus.dto.Bus;
 import com.cc.driver.dto.Driver;
 import com.utils.common.JPage;
 
@@ -22,4 +23,6 @@ public interface DriverMapper {
 	int add(Driver driver);
 	
 	void delete(Driver driver);
+	
+	Driver getById(Driver driver);
 }

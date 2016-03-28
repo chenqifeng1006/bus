@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cc.record.dao.RecordMapper">
+    <resultMap type="Record" id="RecordMap">
+    </resultMap>
+    
+    
+    
+    <select id="queryList" parameterType="com.utils.common.JPage" resultMap="RecordMap">
+    	SELECT 
+    		* 
+    	FROM 
+    		record 
+    	LIMIT #{startNum},#{pageCount}
+    </select>
+    
+    <select id="count" parameterType="String" resultType="Integer">
+		SELECT
+			COUNT(id)
+		FROM
+			record
+    </select>
+    
+    <select id="getById" parameterType="com.cc.record.dto.Record" resultMap="RecordMap">
+		SELECT
+			*
+		FROM
+			record
+		WHERE
+			id=#{id}
+    </select>
+    
+    
+    <insert id="add" parameterType="com.cc.record.dto.Record" useGeneratedKeys="true">
+        INSERT INTO 
+        	record 
+        	(time,price,busId)
+        VALUES 
+        	(#{time},#{price},#{busId})
+    </insert>
+    
+    
+    
+    <update id="update"  parameterType="com.cc.record.dto.Record">
+        UPDATE 
+        	record 
+        SET 
+            time=#{time},
+            busId=#{busId},
+            price=#{price}
+        WHERE 
+        	id=#{id}
+    </update>
+    
+
+    
+	<delete id="delete">
+    	DELETE FROM record WHERE id=#{id}
+    </delete>
+
+</mapper>

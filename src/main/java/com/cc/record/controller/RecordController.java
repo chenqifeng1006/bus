@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cc.admin.dto.Admin;
 import com.cc.base.BaseController;
+import com.cc.notice.dto.Notice;
 import com.cc.record.dto.Record;
 import com.cc.record.service.RecordService;
 import com.utils.common.JPage;
@@ -73,6 +74,13 @@ public class RecordController extends BaseController {
 		dto.setCurrentPage(currentPage);
 		dto.setPageCount(pageCount);			
 		return new JsonData(dto);
+	}
+	
+	@RequestMapping(value = "/getById")
+	@ResponseBody
+	public JsonObject getById(@Validated Record record,HttpServletRequest request,HttpServletResponse response) throws Exception {
+		
+		return new JsonData(this.recordService.getById(record));
 	}
 	
 	@RequestMapping(value = "/delete")

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cc.base.BaseController;
+import com.cc.record.dto.Record;
 import com.cc.user.dto.User;
 import com.cc.user.service.UserService;
 import com.utils.common.JPage;
@@ -97,6 +98,14 @@ public class UserController extends BaseController {
 		dto.setCurrentPage(currentPage);
 		dto.setPageCount(pageCount);			
 		return new JsonData(dto);
+	}
+	
+	
+	@RequestMapping(value = "/getById")
+	@ResponseBody
+	public JsonObject getById(@Validated User user,HttpServletRequest request,HttpServletResponse response) throws Exception {
+		
+		return new JsonData(this.userService.getById(user));
 	}
 	
 	@RequestMapping(value = "/delete")

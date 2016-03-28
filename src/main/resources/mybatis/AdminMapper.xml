@@ -20,6 +20,15 @@
 			admin
     </select>
     
+    <select id="getById" parameterType="com.cc.admin.dto.Admin" resultMap="AdminMap">
+		SELECT
+			*
+		FROM
+			admin
+		WHERE
+			id=#{id}
+    </select>
+    
     
     <select id="getByLoginId" parameterType="String" resultMap="AdminMap">
     	SELECT 

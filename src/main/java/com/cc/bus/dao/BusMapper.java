@@ -17,4 +17,6 @@ public interface BusMapper {
 	int add(Bus bus);
 	
 	void delete(Bus bus);
+	
+	Bus getById(Bus bus);
 }

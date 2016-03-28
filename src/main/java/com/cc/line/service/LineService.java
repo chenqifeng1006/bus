@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cc.bus.dto.Bus;
 import com.cc.line.dao.LineMapper;
 import com.cc.line.dto.Line;
 import com.utils.common.JPage;
@@ -35,5 +36,8 @@ public class LineService {
 		this.lineMapper.delete(line);
 	}
 	
+	public Line getById(Line line){
+		return this.lineMapper.getById(line);
+	}
 
 }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cc.message.dao.MessageMapper">
+    <resultMap type="Message" id="MessageMap">
+    </resultMap>
+    
+    
+    <select id="queryList" parameterType="com.utils.common.JPage" resultMap="MessageMap">
+    	SELECT 
+    		* 
+    	FROM 
+    		message 
+    	LIMIT #{startNum},#{pageCount}
+    </select>
+    
+    <select id="count" parameterType="String" resultType="Integer">
+		SELECT
+			COUNT(id)
+		FROM
+			message
+    </select>
+    
+    
+    <select id="getById" parameterType="com.cc.message.dto.Message" resultMap="MessageMap">
+		SELECT
+			*
+		FROM
+			message
+		WHERE
+			id=#{id}
+    </select>
+    
+    
+    
+    <insert id="add" parameterType="com.cc.message.dto.Message" useGeneratedKeys="true">
+        INSERT INTO 
+        	message 
+        	(content,time)
+        VALUES 
+        	(#{content},#{time})
+    </insert>
+    
+    
+    
+    
+    <delete id="delete">
+    	DELETE FROM message WHERE id=#{id}
+    </delete>
+
+</mapper>

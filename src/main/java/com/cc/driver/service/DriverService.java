@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cc.admin.dto.Admin;
+import com.cc.bus.dto.Bus;
 import com.cc.driver.dao.DriverMapper;
 import com.cc.driver.dto.Driver;
 import com.utils.common.JPage;
@@ -46,6 +48,10 @@ public class DriverService {
 	
 	public void delete(Driver driver){
 		this.driverMapper.delete(driver);
+	}
+	
+	public Driver getById(Driver driver){
+		return this.driverMapper.getById(driver);
 	}
 	
 

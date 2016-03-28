@@ -100,6 +100,14 @@ public class DriverController extends BaseController {
 		return new JsonData(dto);
 	}
 	
+	
+	@RequestMapping(value = "/getById")
+	@ResponseBody
+	public JsonObject getById(@Validated Driver driver,HttpServletRequest request,HttpServletResponse response) throws Exception {
+		
+		return new JsonData(this.driverService.getById(driver));
+	}
+	
 	@RequestMapping(value = "/delete")
 	@ResponseBody
 	public JsonObject delete(@Validated Driver driver,HttpServletRequest request,HttpServletResponse response) throws Exception {
