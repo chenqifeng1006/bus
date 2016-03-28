@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cc.line.dao.LineMapper">
+    <resultMap type="Line" id="LineMap">
+    </resultMap>
+    
+    
+    
+    <select id="queryList" parameterType="com.utils.common.JPage" resultMap="LineMap">
+    	SELECT 
+    		* 
+    	FROM 
+    		line 
+    	LIMIT #{startNum},#{pageCount}
+    </select>
+    
+    <select id="count" parameterType="String" resultType="Integer">
+		SELECT
+			COUNT(id)
+		FROM
+			line
+    </select>
+    
+    
+    
+    
+    <insert id="add" parameterType="com.cc.line.dto.Line" useGeneratedKeys="true">
+        INSERT INTO 
+        	line 
+        	(name,firstStation,lastStation,firstStationEarlystTime,firstStationLastestTime,lastStationEarlystTime,lastStationLastestTime,allStationName)
+        VALUES 
+        	(#{name},#{firstStation},#{lastStation},#{firstStationEarlystTime},#{firstStationLastestTime},#{lastStationEarlystTime},#{lastStationLastestTime},#{allStationName})
+    </insert>
+    
+    
+    
+    <update id="update"  parameterType="com.cc.line.dto.Line">
+        UPDATE 
+        	line 
+        SET 
+            name=#{name},
+            firstStation=#{firstStation},
+            lastStation=#{lastStation},
+            firstStationEarlystTime=#{firstStationEarlystTime},
+            firstStationLastestTime=#{firstStationLastestTime},
+            lastStationEarlystTime=#{lastStationEarlystTime},
+            lastStationLastestTime=#{lastStationLastestTime},
+            allStationName=#{allStationName}
+        WHERE 
+        	id=#{id}
+    </update>
+    
+
+    
+	<delete id="delete">
+    	DELETE FROM line WHERE id=#{id}
+    </delete>
+
+</mapper>
