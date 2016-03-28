@@ -2,15 +2,78 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cc.admin.dao.AdminMapper">
     <resultMap type="Admin" id="AdminMap">
-        <result column="user_name" property="username"/>
     </resultMap>
-
-    <select id="getByName" resultMap="AdminMap">
+    
+    
+    <select id="queryList" parameterType="com.utils.common.JPage" resultMap="AdminMap">
     	SELECT 
     		* 
     	FROM 
-    		admin  
-   		WHERE user_name = #{username}
+    		admin 
+    	LIMIT #{startNum},#{pageCount}
     </select>
+    
+    <select id="count" parameterType="String" resultType="Integer">
+		SELECT
+			COUNT(id)
+		FROM
+			admin
+    </select>
+    
+    
+    <select id="getByLoginId" parameterType="String" resultMap="AdminMap">
+    	SELECT 
+    		*
+    	FROM 
+    		admin 
+   		WHERE
+   			loginId=#{loginId}
+    </select>
+    
+    
+    <insert id="add" parameterType="com.cc.admin.dto.Admin" useGeneratedKeys="true">
+        INSERT INTO 
+        	admin 
+        	(loginId,password,username,telephone,cardNo)
+        VALUES 
+        	(#{loginId},#{password},#{username},#{telephone},#{cardNo})
+    </insert>
+    
+    <update id="update"  parameterType="com.cc.admin.dto.Admin">
+        UPDATE 
+        	admin 
+        SET 
+        	password=#{password},
+            username=#{username},
+            telephone=#{telephone},
+            cardNo=#{cardNo}
+        WHERE 
+        	id=#{id}
+    </update>
+    
+    <update id="updateInfo"  parameterType="com.cc.admin.dto.Admin">
+        UPDATE 
+        	admin 
+        SET 
+        	
+            username=#{username},
+            telephone=#{telephone},
+            cardNo=#{cardNo}
+        WHERE 
+        	id=#{id}
+    </update>
+    
+    <update id="updatePassword"  parameterType="com.cc.admin.dto.Admin">
+        UPDATE 
+        	admin 
+        SET 
+            password=#{password}
+        WHERE 
+        	id=#{id}
+    </update>
+    
+    <delete id="delete">
+    	DELETE FROM admin WHERE id=#{id}
+    </delete>
 
 </mapper>

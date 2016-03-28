@@ -1,7 +1,7 @@
-package com.cc.admin.dto;
+package com.cc.user.dto;
 
-public class Admin {
-	
+public class User {
+
 	int id;
 	
 	String loginId;
@@ -13,23 +13,6 @@ public class Admin {
 	String telephone;
 	
 	String cardNo;
-	
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
 
 	public int getId() {
 		return id;
@@ -47,6 +30,22 @@ public class Admin {
 		this.loginId = loginId;
 	}
 
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public String getTelephone() {
 		return telephone;
 	}
@@ -62,7 +61,5 @@ public class Admin {
 	public void setCardNo(String cardNo) {
 		this.cardNo = cardNo;
 	}
-	
-	
 	
 }

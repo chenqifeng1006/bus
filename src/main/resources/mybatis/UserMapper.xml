@@ -1,21 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cc.admin.dao.UserMapper">
+<mapper namespace="com.cc.user.dao.UserMapper">
+    <resultMap type="User" id="UserMap">
+    </resultMap>
     
-
-    <select id="getByLoginId"   resultType="com.cc.admin.dto.User">
+    
+    
+    <select id="queryList" parameterType="com.utils.common.JPage" resultMap="UserMap">
     	SELECT 
     		* 
     	FROM 
-    		user  
-   		WHERE loginId = #{loginId}
+    		user 
+    	LIMIT #{startNum},#{pageCount}
     </select>
-
-    <insert id="save" parameterType="com.cc.admin.dto.User">
-    	insert into user(loginId,userName,password,address) values(#{loginId},#{userName},#{password,},#{address});  
+    
+    <select id="count" parameterType="String" resultType="Integer">
+		SELECT
+			COUNT(id)
+		FROM
+			user
+    </select>
+    
+    
+    <select id="getByLoginId" parameterType="String" resultMap="UserMap">
+    	SELECT 
+    		*
+    	FROM 
+    		user 
+   		WHERE
+   			loginId=#{loginId}
+    </select>
+    
+    
+    <insert id="add" parameterType="com.cc.user.dto.User" useGeneratedKeys="true">
+        INSERT INTO 
+        	user 
+        	(loginId,password,username,telephone,cardNo)
+        VALUES 
+        	(#{loginId},#{password},#{username},#{telephone},#{cardNo})
     </insert>
     
-    <update id="update" parameterType="User">  
-       update user set userName=#{userName}, address=#{address},password=#{password} where loginId=#{loginId}  
-    </update>  
+    
+    <update id="updateInfo"  parameterType="com.cc.user.dto.User">
+        UPDATE 
+        	user 
+        SET 
+            username=#{username},
+            telephone=#{telephone},
+            cardNo=#{cardNo}
+        WHERE 
+        	id=#{id}
+    </update>
+    
+    <update id="updatePassword"  parameterType="com.cc.user.dto.User">
+        UPDATE 
+        	user 
+        SET 
+            password=#{password}
+        WHERE 
+        	id=#{id}
+    </update>
+    
+
+
 </mapper>

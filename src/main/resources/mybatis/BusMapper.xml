@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cc.bus.dao.BusMapper">
+    <resultMap type="Bus" id="BusMap">
+    </resultMap>
+    
+    
+    <select id="queryList" parameterType="com.utils.common.JPage" resultMap="BusMap">
+    	SELECT 
+    		* 
+    	FROM 
+    		bus 
+    	LIMIT #{startNum},#{pageCount}
+    </select>
+    
+    <select id="count" parameterType="String" resultType="Integer">
+		SELECT
+			COUNT(id)
+		FROM
+			bus
+    </select>
+    
+    
+    <insert id="add" parameterType="com.cc.bus.dto.Bus" useGeneratedKeys="true">
+        INSERT INTO 
+        	bus 
+        	(busNo,lisenceNo,driverId,maxPerson,lineId)
+        VALUES 
+        	(#{busNo},#{lisenceNo},#{driverId},#{maxPerson},#{lineId})
+    </insert>
+    
+    <update id="update"  parameterType="com.cc.bus.dto.Bus">
+        UPDATE 
+        	bus 
+        SET 
+        	busNo=#{busNo},
+            lisenceNo=#{lisenceNo},
+            driverId=#{driverId},
+            maxPerson=#{maxPerson},
+            lineId=#{lineId}
+        WHERE 
+        	id=#{id}
+    </update>
+    
+    <delete id="delete">
+    	DELETE FROM bus WHERE id=#{id}
+    </delete>
+
+</mapper>

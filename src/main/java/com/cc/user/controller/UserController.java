@@ -1,4 +1,4 @@
-package com.cc.admin.controller;
+package com.cc.user.controller;
 
 import java.util.List;
 
@@ -13,38 +13,38 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cc.admin.dto.Admin;
-import com.cc.admin.service.AdminService;
 import com.cc.base.BaseController;
+import com.cc.user.dto.User;
+import com.cc.user.service.UserService;
 import com.utils.common.JPage;
 import com.utils.common.PageDTO;
 import com.utils.json.JsonData;
 import com.utils.json.JsonObject;
-import com.utils.json.JsonSuccess;
 import com.utils.token.CookieHandler;
 
 
 
 @Controller
-@RequestMapping("admin")
-public class AdminController extends BaseController {
+@RequestMapping("user")
+public class UserController extends BaseController {
 	
 	@Autowired
 	private CookieHandler cookieHandler;
 	@Autowired
-	private AdminService adminService;
+	private UserService userService;
 	
 
 	@RequestMapping(value = "/login")
 	@ResponseBody
-	public JsonObject login(@Validated Admin admin,HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public JsonObject login(@Validated User user,HttpServletRequest request,HttpServletResponse response) throws Exception {
 
-		String loginId = admin.getLoginId();
+		String loginId = user.getLoginId();
 		
-		Admin item = this.adminService.getByLoginId(loginId);
+		User item = this.userService.getByLoginId(loginId);
 		
 		if(item == null){
 			throw new Exception("用户不存在");
-		}else if(!item.getPassword().equals(admin.getPassword())){
+		}else if(!item.getPassword().equals(user.getPassword())){
 			throw new Exception("密码不正确");
 		}
 		
@@ -53,50 +53,32 @@ public class AdminController extends BaseController {
 	
 	@RequestMapping(value = "/add")
 	@ResponseBody
-	public JsonObject add(@Validated Admin admin,HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public JsonObject add(@Validated User user,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		
-		int id = this.adminService.add(admin);
+		int id = this.userService.add(user);
 		
 		return new JsonData(id);
 	}
 	
-	@RequestMapping(value = "/delete")
-	@ResponseBody
-	public JsonObject delete(@Validated Admin admin,HttpServletRequest request,HttpServletResponse response) throws Exception {
-		
-		this.adminService.delete(admin);
-		
-		return new JsonSuccess();
-	}
-	
-	@RequestMapping(value = "/update")
-	@ResponseBody
-	public JsonObject update(@Validated Admin admin,HttpServletRequest request,HttpServletResponse response) throws Exception {
-		
-		
-		this.adminService.update(admin);
-		
-		return new JsonData(admin);
-	}
 	
 	
 	@RequestMapping(value = "/updateInfo")
 	@ResponseBody
-	public JsonObject updateInfo(@Validated Admin admin,HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public JsonObject updateInfo(@Validated User user,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		
 		
-		this.adminService.updateInfo(admin);
+		this.userService.updateInfo(user);
 		
-		return new JsonData(admin);
+		return new JsonData(user);
 	}
 	
 	@RequestMapping(value = "/updatePassword")
 	@ResponseBody
-	public JsonObject updatePassword(@Validated Admin admin,HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public JsonObject updatePassword(@Validated User user,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		
-		this.adminService.updatePassword(admin);
+		this.userService.updatePassword(user);
 		
-		return new JsonData(admin);
+		return new JsonData(user);
 	}
 	
 	@RequestMapping(value = "/queryList")
@@ -105,8 +87,8 @@ public class AdminController extends BaseController {
 			@RequestParam(value = "startNum", defaultValue = "0") Integer startNum,
 			@RequestParam(value = "pageCount", defaultValue = "10") Integer pageCount) throws Exception {
 		JPage page = new JPage(startNum,pageCount);
-		List<Admin> list = this.adminService.queryList(page);		
-		int count = this.adminService.count();
+		List<User> list = this.userService.queryList(page);		
+		int count = this.userService.count();
 		int currentPage = startNum/pageCount + 1;
 		PageDTO dto = new PageDTO();		
 		dto.setList(list);
@@ -116,6 +98,7 @@ public class AdminController extends BaseController {
 		dto.setPageCount(pageCount);			
 		return new JsonData(dto);
 	}
+	
 	
 	
 }
