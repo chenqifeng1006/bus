@@ -5,12 +5,23 @@
     </resultMap>
     
     
-    <select id="queryList" parameterType="com.utils.common.JPage" resultMap="BusMap">
-    	SELECT 
-    		* 
-    	FROM 
-    		bus 
-    	LIMIT #{startNum},#{pageCount}
+    <select id="queryList" parameterType="com.utils.common.JPage" resultMap="BusMap"> 	
+    	
+    	SELECT
+			bus.*, driver.username driverName,line.`name` lineName
+		FROM
+			bus
+		LEFT JOIN 
+			driver 
+		ON 
+			bus.driverId = driver.id
+		LEFT JOIN
+			line
+		ON
+			bus.lineId = line.id
+		LIMIT #{startNum},#{pageCount}
+    	
+    	
     </select>
     
     <select id="count" parameterType="String" resultType="Integer">
@@ -19,6 +30,17 @@
 		FROM
 			bus
     </select>
+    
+    <select id="countByLineId" parameterType="com.cc.bus.dto.Bus" resultType="Integer">
+        SELECT 
+        	COUNT(*)
+		FROM 
+			bus
+		WHERE 
+			lineId = #{lineId}
+    </select>
+    
+
     
     
     <select id="getById" parameterType="com.cc.bus.dto.Bus" resultMap="BusMap">

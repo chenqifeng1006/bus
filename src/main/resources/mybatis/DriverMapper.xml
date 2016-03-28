@@ -8,10 +8,16 @@
     
     <select id="queryList" parameterType="com.utils.common.JPage" resultMap="DriverMap">
     	SELECT 
-    		* 
+    		driver.*,bus.lisenceno
     	FROM 
     		driver 
-    	LIMIT #{startNum},#{pageCount}
+   		LEFT JOIN
+   			bus
+ 		ON
+ 			bus.id = driver.busId
+    	LIMIT 
+    		#{startNum},#{pageCount}
+    	
     </select>
     
     <select id="count" parameterType="String" resultType="Integer">
@@ -45,9 +51,9 @@
     <insert id="add" parameterType="com.cc.driver.dto.Driver" useGeneratedKeys="true">
         INSERT INTO 
         	driver 
-        	(loginId,password,drivername,telephone,cardNo)
+        	(loginId,password,username,telephone,busId)
         VALUES 
-        	(#{loginId},#{password},#{drivername},#{telephone},#{cardNo})
+        	(#{loginId},#{password},#{username},#{telephone},#{busId})
     </insert>
     
     
@@ -55,9 +61,9 @@
         UPDATE 
         	driver 
         SET 
-            drivername=#{drivername},
+            username=#{username},
             telephone=#{telephone},
-            cardNo=#{cardNo}
+            busId=#{busId}
         WHERE 
         	id=#{id}
     </update>
@@ -66,9 +72,9 @@
         UPDATE 
         	driver 
         SET 
-            drivername=#{drivername},
+            username=#{username},
             telephone=#{telephone},
-            cardNo=#{cardNo},
+            busId=#{busId},
             password=#{password}
         WHERE 
         	id=#{id}

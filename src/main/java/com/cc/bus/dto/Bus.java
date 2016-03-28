@@ -13,6 +13,10 @@ public class Bus {
 	int maxPerson;
 	
 	int lineId;
+	
+	String lineName;
+	
+	String driverName;
 
 	public int getId() {
 		return id;
@@ -61,8 +65,22 @@ public class Bus {
 	public void setLineId(int lineId) {
 		this.lineId = lineId;
 	}
-	
-	
+
+	public String getLineName() {
+		return lineName;
+	}
+
+	public void setLineName(String lineName) {
+		this.lineName = lineName;
+	}
+
+	public String getDriverName() {
+		return driverName;
+	}
+
+	public void setDriverName(String driverName) {
+		this.driverName = driverName;
+	}
 	
 	
 }

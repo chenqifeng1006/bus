@@ -12,6 +12,8 @@ public class Driver {
 	
 	String telephone;
 	
+	String lisenceno;
+	
 	int busId;
 
 	public int getId() {
@@ -60,6 +62,14 @@ public class Driver {
 
 	public void setBusId(int busId) {
 		this.busId = busId;
+	}
+
+	public String getLisenceno() {
+		return lisenceno;
+	}
+
+	public void setLisenceno(String lisenceno) {
+		this.lisenceno = lisenceno;
 	}
 	
 	

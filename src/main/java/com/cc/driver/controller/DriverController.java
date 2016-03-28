@@ -16,6 +16,7 @@ import com.cc.base.BaseController;
 import com.cc.bus.dto.Bus;
 import com.cc.driver.dto.Driver;
 import com.cc.driver.service.DriverService;
+import com.cc.line.dto.Line;
 import com.utils.common.JPage;
 import com.utils.common.PageDTO;
 import com.utils.json.JsonData;
@@ -113,6 +114,32 @@ public class DriverController extends BaseController {
 	public JsonObject delete(@Validated Driver driver,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		
 		this.driverService.delete(driver);
+		
+		return new JsonSuccess();
+	}
+	
+	@RequestMapping(value = "/bindBus")
+	@ResponseBody
+	public JsonObject bindLine(int id,int busId) throws Exception {
+		
+		Bus bus = new Bus();
+		Driver driver = new Driver();
+		driver.setId(id);
+		bus.setId(busId);
+		this.driverService.bindBus(driver,bus);
+		
+		return new JsonSuccess();
+	}
+	
+	@RequestMapping(value = "/unBindBus")
+	@ResponseBody
+	public JsonObject unBindBus(int id,int busId) throws Exception {
+		
+		Bus bus = new Bus();
+		Driver driver = new Driver();
+		driver.setId(id);
+		bus.setId(busId);
+		this.driverService.unBindBus(driver,bus);
 		
 		return new JsonSuccess();
 	}

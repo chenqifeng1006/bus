@@ -19,4 +19,7 @@ public interface BusMapper {
 	void delete(Bus bus);
 	
 	Bus getById(Bus bus);
+	
+	int countByLineId(Bus bus);
+	
 }

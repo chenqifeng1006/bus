@@ -4,18 +4,25 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.cc.admin.dto.Admin;
+import com.cc.bus.dao.BusMapper;
 import com.cc.bus.dto.Bus;
 import com.cc.driver.dao.DriverMapper;
 import com.cc.driver.dto.Driver;
+import com.cc.line.dao.LineMapper;
 import com.utils.common.JPage;
 
 @Service
+@Transactional
 public class DriverService {
 	
 	@Autowired
 	private DriverMapper driverMapper;
+	@Autowired
+	private BusMapper busMapper;
+	@Autowired
+	private LineMapper lineMapper;
 	
 	public List<Driver> queryList(JPage page){
 		return this.driverMapper.queryList(page);
@@ -52,6 +59,24 @@ public class DriverService {
 	
 	public Driver getById(Driver driver){
 		return this.driverMapper.getById(driver);
+	}
+	
+	public void bindBus(Driver d,Bus b){
+		Driver driver = this.driverMapper.getById(d);
+		Bus bus = this.busMapper.getById(b);
+		driver.setBusId(bus.getId());
+		bus.setDriverId(driver.getId());
+		this.driverMapper.update(driver);
+		this.busMapper.update(bus);
+	}
+	
+	public void unBindBus(Driver d,Bus b){
+		Driver driver = this.driverMapper.getById(d);
+		Bus bus = this.busMapper.getById(b);
+		driver.setBusId(0);
+		bus.setDriverId(0);
+		this.driverMapper.update(driver);
+		this.busMapper.update(bus);
 	}
 	
 

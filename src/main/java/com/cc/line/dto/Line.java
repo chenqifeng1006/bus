@@ -21,6 +21,8 @@ public class Line {
 	Date lastStationLastestTime;
 	
 	String allStationname;
+	
+	int busNum;
 
 	public int getId() {
 		return id;
@@ -93,9 +95,14 @@ public class Line {
 	public void setAllStationname(String allStationname) {
 		this.allStationname = allStationname;
 	}
-	
-	
-	
+
+	public int getBusNum() {
+		return busNum;
+	}
+
+	public void setBusNum(int busNum) {
+		this.busNum = busNum;
+	}
 	
 	
 }
