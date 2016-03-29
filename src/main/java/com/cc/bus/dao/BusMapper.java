@@ -10,7 +10,15 @@ public interface BusMapper {
 	
 	List<Bus> queryList(JPage page);
 	
+	List<Bus> queryNoLineList(JPage page);
+	
+	List<Bus> queryNoDriverList(JPage page);
+	
 	int count();
+	
+	int noDriverCount();
+	
+	int noLineCount();
 
 	void update(Bus bus);
 	

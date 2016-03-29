@@ -26,7 +26,7 @@ import com.utils.token.CookieHandler;
 
 @Controller
 @RequestMapping("admin")
-public class AdminController extends BaseController {
+public class AdminController /*extends BaseController*/ {
 	
 	@Autowired
 	private CookieHandler cookieHandler;
@@ -47,7 +47,7 @@ public class AdminController extends BaseController {
 		}else if(!item.getPassword().equals(admin.getPassword())){
 			throw new Exception("密码不正确");
 		}
-		
+		cookieHandler.addCookies(response, "admin_name", item.getUsername(), 7);
 		return new JsonData(item);
 	}
 	

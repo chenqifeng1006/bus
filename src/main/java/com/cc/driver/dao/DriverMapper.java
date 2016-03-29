@@ -12,7 +12,11 @@ public interface DriverMapper {
 	
 	List<Driver> queryList(JPage page);
 	
+	List<Driver> queryNoBusList(JPage page);
+	
 	int count();
+	
+	int noBusCount();
 	
 	void updateInfo(Driver driver);
 	

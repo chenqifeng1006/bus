@@ -74,6 +74,47 @@ public class BusController extends BaseController {
 		return new JsonData(dto);
 	}
 	
+	
+	@RequestMapping(value = "/queryNoDriverList")
+	@ResponseBody
+	public JsonObject queryNoDriverList(HttpServletRequest request,HttpServletResponse response,
+			@RequestParam(value = "startNum", defaultValue = "0") Integer startNum,
+			@RequestParam(value = "pageCount", defaultValue = "10") Integer pageCount) throws Exception {
+		JPage page = new JPage(startNum,pageCount);
+		List<Bus> list = this.busService.queryNoDriverList(page);		
+		int count = this.busService.noDriverCount();
+		int currentPage = startNum/pageCount + 1;
+		PageDTO dto = new PageDTO();		
+		dto.setList(list);
+		dto.setCount(count);
+		dto.setStartNum(startNum);
+		dto.setCurrentPage(currentPage);
+		dto.setPageCount(pageCount);			
+		return new JsonData(dto);
+	}
+	
+	
+	@RequestMapping(value = "/queryNoLineList")
+	@ResponseBody
+	public JsonObject queryNoLineList(HttpServletRequest request,HttpServletResponse response,
+			@RequestParam(value = "startNum", defaultValue = "0") Integer startNum,
+			@RequestParam(value = "pageCount", defaultValue = "10") Integer pageCount) throws Exception {
+		JPage page = new JPage(startNum,pageCount);
+		List<Bus> list = this.busService.queryNoLineList(page);		
+		int count = this.busService.noLineCount();
+		int currentPage = startNum/pageCount + 1;
+		PageDTO dto = new PageDTO();		
+		dto.setList(list);
+		dto.setCount(count);
+		dto.setStartNum(startNum);
+		dto.setCurrentPage(currentPage);
+		dto.setPageCount(pageCount);			
+		return new JsonData(dto);
+	}
+	
+	
+	
+	
 	@RequestMapping(value = "/getById")
 	@ResponseBody
 	public JsonObject getById(@Validated Bus bus,HttpServletRequest request,HttpServletResponse response) throws Exception {

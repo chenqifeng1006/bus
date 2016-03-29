@@ -101,6 +101,24 @@ public class DriverController extends BaseController {
 		return new JsonData(dto);
 	}
 	
+	@RequestMapping(value = "/queryNoBusList")
+	@ResponseBody
+	public JsonObject queryNoBusList(HttpServletRequest request,HttpServletResponse response,
+			@RequestParam(value = "startNum", defaultValue = "0") Integer startNum,
+			@RequestParam(value = "pageCount", defaultValue = "10") Integer pageCount) throws Exception {
+		JPage page = new JPage(startNum,pageCount);
+		List<Driver> list = this.driverService.queryNoBusList(page);		
+		int count = this.driverService.noBusCount();
+		int currentPage = startNum/pageCount + 1;
+		PageDTO dto = new PageDTO();		
+		dto.setList(list);
+		dto.setCount(count);
+		dto.setStartNum(startNum);
+		dto.setCurrentPage(currentPage);
+		dto.setPageCount(pageCount);			
+		return new JsonData(dto);
+	}
+	
 	
 	@RequestMapping(value = "/getById")
 	@ResponseBody

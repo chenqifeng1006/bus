@@ -1,5 +1,6 @@
 package com.utils.token;
 
+import java.net.URLEncoder;
 import java.util.UUID;
 
 import javax.servlet.http.Cookie;
@@ -18,7 +19,7 @@ public class CookieHandler{
 		}
 		String result = null;
 		for (Cookie cookie : cookies) {
-			if (cookie.getName().equals(key)) {
+			if (cookie.getName().equals(URLEncoder.encode(key))) {
 				result = cookie.getValue();
 				break;
 			}
@@ -28,17 +29,17 @@ public class CookieHandler{
 	
 	public String getCookieValue(HttpServletRequest request,String key) {
 		Cookie[] cookies = request.getCookies();
-		return this.getCookieValue(cookies, key);
+		return this.getCookieValue(cookies, URLEncoder.encode(key));
 	}
 	
 	public void addCookies(HttpServletResponse response, String key, String value,Integer time) {
-		Cookie cookie = new Cookie(key, value);
+		Cookie cookie = new Cookie(URLEncoder.encode(key), URLEncoder.encode(value));
 		cookie.setMaxAge(time);
 		cookie.setPath("/");
 		response.addCookie(cookie);
 	}
 	public void addCookies(HttpServletResponse response, String key, String value,Integer time,boolean httpOnly) {
-		Cookie cookie = new Cookie(key, value);
+		Cookie cookie = new Cookie(URLEncoder.encode(key), URLEncoder.encode(value));
 		cookie.setMaxAge(time);
 		cookie.setPath("/");
 		cookie.setHttpOnly(httpOnly);
@@ -46,7 +47,7 @@ public class CookieHandler{
 	}
 	
 	public void removeCookies(HttpServletResponse response, String key) {
-		Cookie cookie = new Cookie(key, null);
+		Cookie cookie = new Cookie(URLEncoder.encode(key), null);
 		cookie.setMaxAge(0);
 		cookie.setPath("/");
 		response.addCookie(cookie);

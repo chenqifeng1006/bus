@@ -19,16 +19,73 @@
 			line
 		ON
 			bus.lineId = line.id
-		LIMIT #{startNum},#{pageCount}
+		LIMIT 
+			#{startNum},#{pageCount}
     	
     	
     </select>
+    
+    <select id="queryNoLineList" parameterType="com.utils.common.JPage" resultMap="BusMap"> 	
+    	
+    	SELECT
+			*
+		FROM
+			bus
+		WHERE
+			lineId is NULL
+		OR 
+			lineId = 0
+		LIMIT 
+			#{startNum},#{pageCount}
+    	
+    	
+    </select>
+    
+    
+    <select id="queryNoDriverList" parameterType="com.utils.common.JPage" resultMap="BusMap"> 	
+    	
+    	SELECT
+			*
+		FROM
+			bus
+		WHERE
+			driverId is NULL
+		OR 
+			driverId = 0
+		LIMIT 
+			#{startNum},#{pageCount}
+    	
+    	
+    </select>
+    
     
     <select id="count" parameterType="String" resultType="Integer">
 		SELECT
 			COUNT(id)
 		FROM
 			bus
+    </select>
+    
+    <select id="noLineCount" parameterType="String" resultType="Integer">
+		SELECT
+			COUNT(id)
+		FROM
+			bus
+		WHERE
+			lineId is NULL 
+		OR 
+			lineId = 0
+    </select>
+    
+    <select id="noDriverCount" parameterType="String" resultType="Integer">
+		SELECT
+			COUNT(id)
+		FROM
+			bus
+		WHERE
+			driverId is NULL 
+		OR 
+			driverId = 0
     </select>
     
     <select id="countByLineId" parameterType="com.cc.bus.dto.Bus" resultType="Integer">
@@ -39,8 +96,6 @@
 		WHERE 
 			lineId = #{lineId}
     </select>
-    
-
     
     
     <select id="getById" parameterType="com.cc.bus.dto.Bus" resultMap="BusMap">

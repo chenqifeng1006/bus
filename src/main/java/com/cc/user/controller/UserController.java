@@ -48,7 +48,7 @@ public class UserController extends BaseController {
 		}else if(!item.getPassword().equals(user.getPassword())){
 			throw new Exception("密码不正确");
 		}
-		
+		cookieHandler.addCookies(response, "user_name", item.getUsername(), 7);
 		return new JsonData(item);
 	}
 	

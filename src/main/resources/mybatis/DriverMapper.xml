@@ -22,11 +22,37 @@
     	
     </select>
     
+    
+    <select id="queryNoBusList" parameterType="com.utils.common.JPage" resultMap="DriverMap">
+    	SELECT
+			*
+		FROM
+			driver
+		WHERE
+			busId is NULL 
+		OR
+			busId = 0			
+    	LIMIT 
+    		#{startNum},#{pageCount}
+    </select>
+    
+    
     <select id="count" parameterType="String" resultType="Integer">
 		SELECT
 			COUNT(id)
 		FROM
 			driver
+    </select>
+    
+    <select id="noBusCount" parameterType="String" resultType="Integer">
+		SELECT
+			COUNT(id)
+		FROM
+			driver
+		WHERE
+			busId is NULL 
+		OR
+			busId = 0		
     </select>
     
     

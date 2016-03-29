@@ -29,8 +29,22 @@ public class BusService {
 		return this.busMapper.queryList(page);
 	}
 	
+	public List<Bus> queryNoDriverList(JPage page){
+		return this.busMapper.queryNoDriverList(page);
+	}
+	
+	public List<Bus> queryNoLineList(JPage page){
+		return this.busMapper.queryNoLineList(page);
+	}
+	
 	public int count(){
 		return this.busMapper.count();
+	}
+	public int noDriverCount(){
+		return this.busMapper.noDriverCount();
+	}
+	public int noLineCount(){
+		return this.busMapper.noLineCount();
 	}
 	
 	public int countByLineId(Bus bus){

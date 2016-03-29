@@ -28,8 +28,16 @@ public class DriverService {
 		return this.driverMapper.queryList(page);
 	}
 	
+	public List<Driver> queryNoBusList(JPage page){
+		return this.driverMapper.queryNoBusList(page);
+	}
+	
 	public int count(){
 		return this.driverMapper.count();
+	}
+	
+	public int noBusCount(){
+		return this.driverMapper.noBusCount();
 	}
 	
 	
