@@ -2,9 +2,10 @@
  * 封装页面的共同操作
  */
 define([
-    'BaseClass'
+    'BaseClass',
+    'vue'
 ],
-function (BaseClass) {
+function (BaseClass,Vue) {
 
 	"use strict";
 
@@ -13,7 +14,12 @@ function (BaseClass) {
 			var that = this;
 			that.parent = options.parent || $('body');
 			BaseClass.fn.init.call(this, options);
+			that.initDefaultParams();
 			that.bindPageEvent();
+    	},
+    	initDefaultParams:function(){
+    		this.Vue = Vue;
+    		window.that = this;
     	},
 		bindPageEvent:function(){
 			var that = this,

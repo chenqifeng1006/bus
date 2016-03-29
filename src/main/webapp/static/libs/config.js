@@ -26,6 +26,7 @@ require.config({
         'echarts'               : '../libs/echarts/echarts.min',
         'datetimepicker'        : '../libs/datetimepicker/js/bootstrap-datetimepicker.min',
         'datePicker'            : '../libs/My97DatePicker/WdatePicker',
+        'vue'            		: '../libs/vue/vue.min',
         'message'				: '../libs/message/js/messenger.min'
 
         
@@ -73,9 +74,16 @@ require.config({
 	  	  }
 	}
 });
-require(['Index'],function(Page){
 
-});
+var href = location.href;
+if(href.indexOf('admin') >= 0){
+	require(['../apps/admin/Index'],function(Page){});
+}else if(href.indexOf('driver') >= 0){
+	require(['../apps/driver/Index'],function(Page){});
+}else if(href.indexOf('index') >= 0){
+	require(['../apps/index/Index'],function(Page){});
+}
+
 
 
 

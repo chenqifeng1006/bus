@@ -1,7 +1,7 @@
 /target
 
 /src/main/webapp/static/node_modules
-
+/src/main/webapp/static/.idea
 /.settings
 /.project
 /.classpath

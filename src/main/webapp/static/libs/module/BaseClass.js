@@ -7,13 +7,14 @@ define([
 	'Class',
 	'Util',
 	'Template',
+	'vue',
 	'text!../template/util/modalTpl.html',
 	'bootstrap',
 	'message',
 	'Ajax',
 	'cookie'
 ],
-function ($,Class,Util,Template,modalTpl) {
+function ($,Class,Util,Template,Vue,modalTpl) {
 
 	"use strict";
 
@@ -31,12 +32,53 @@ function ($,Class,Util,Template,modalTpl) {
 			}
 			$.that = that;
 		},
+		checkForm:function(el){
+			var that = this,
+				inputs = $(el).find('input').toArray(),
+				i = 0,
+				length = inputs.length,
+				value,
+				name,
+				forName,
+				required,
+				requiredMsg,
+				maxLen,
+				maxLenMsg,
+				minLen,
+				minLenMsg;
+			for(; i < length; i++){
+				value = $(inputs[i]).val();
+				name = $(inputs[i]).attr('name');
+				forName = $.trim($(el).find('[data-for=' + name + ']').text() || ''),
+				required = $(inputs[i]).data('required');
+				maxLen = $(inputs[i]).data('maxlen');
+				minLen = $(inputs[i]).data('minlen');
+				requiredMsg = $(inputs[i]).data('requiredmsg') || forName +　'不可为空';
+				maxLenMsg = $(inputs[i]).data('maxlenmsg') || forName +　'最大长度不能大于' + maxLen + '位';
+				minLenMsg = $(inputs[i]).data('minlenmsg') || forName +　'最小长度不能小于' + minLen + '位';
+				if(required && !value){
+					that.alert(requiredMsg);
+					return false;
+				}
+				if(maxLen && value.length > maxLen){
+					that.alert(maxLenMsg);
+					return false;
+				}
+				if(minLen && value.length < minLen){
+					that.alert(minLenMsg);
+					return false;
+				}
+				
+			}
+			return true;
+		},
 		/**
 		 * ajax get 方法
 		 */
 		ajax:function(options){
 			var that = this;
 			options = options || {};
+			options.data = options.data instanceof that.Vue ? options.data.$data : options.data;
 			options.error = function(message){
 				that.error(message)
 			}
@@ -69,9 +111,11 @@ function ($,Class,Util,Template,modalTpl) {
 			//}
 			var parent = options.parent,
 				callback = options.callback || function(){},
+				methods = options.methods || {},
 				template = options.template || '',
 				type = options.type || 'html',
 				data = options.data || {},
+				vueData,
 				otherData = options.otherData || {},
 				tpl = this.getTemplate(template,data,otherData).replace(/>\s*</g,'><');
 			if(type === 'html'){
@@ -81,7 +125,14 @@ function ($,Class,Util,Template,modalTpl) {
 			}else if(type === 'prepend'){
 				parent.prepend(tpl);
 			}
+			vueData = new Vue(
+					{
+					  el: parent.selector,
+					  data: data,
+					  methods:methods
+					})
 			callback();
+			return vueData;
 		},
 		setCookie:function(key,value,expires){
 			var obj = {path:'/'};
