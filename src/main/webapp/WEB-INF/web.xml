@@ -17,6 +17,20 @@
 	</listener>
 	<!-- 用于启动 持久层和业务层 的spring容器 end -->
 
+	<!-- 过滤器，支持H5跨域方案 -->
+	<filter>
+		<filter-name>corsfilter</filter-name>
+		<filter-class>com.filter.CorsFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>corsfilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 
 	<servlet>
 		<servlet-name>springMVC</servlet-name>
