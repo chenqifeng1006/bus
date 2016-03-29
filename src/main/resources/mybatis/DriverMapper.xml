@@ -7,14 +7,16 @@
     
     
     <select id="queryList" parameterType="com.utils.common.JPage" resultMap="DriverMap">
-    	SELECT 
-    		driver.*,bus.lisenceno
-    	FROM 
-    		driver 
-   		LEFT JOIN
-   			bus
- 		ON
- 			bus.id = driver.busId
+    	SELECT
+			driver.*, bus.busNo,
+			bus.lisenceNo,
+			bus.maxPerson,
+			line.`name` lineName,
+			line.allStationName
+		FROM
+			driver
+		LEFT JOIN bus ON driver.busId = bus.id
+		LEFT JOIN line ON bus.lineId = line.id
     	LIMIT 
     		#{startNum},#{pageCount}
     	
@@ -29,12 +31,19 @@
     
     
     <select id="getById" parameterType="com.cc.driver.dto.Driver" resultMap="DriverMap">
-		SELECT
-			*
+    
+    	SELECT
+			driver.*, bus.busNo,
+			bus.lisenceNo,
+			bus.maxPerson,
+			line.`name` lineName,
+			line.allStationName
 		FROM
 			driver
-		WHERE
-			id=#{id}
+		LEFT JOIN bus ON driver.busId = bus.id
+		LEFT JOIN line ON bus.lineId = line.id
+		WHERE driver.id = #{id}
+    
     </select>
     
     

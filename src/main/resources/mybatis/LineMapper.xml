@@ -36,9 +36,9 @@
     <insert id="add" parameterType="com.cc.line.dto.Line" useGeneratedKeys="true">
         INSERT INTO 
         	line 
-        	(name,firstStation,lastStation,firstStationEarlystTime,firstStationLastestTime,lastStationEarlystTime,lastStationLastestTime,allStationName)
+        	(name,allStationName)
         VALUES 
-        	(#{name},#{firstStation},#{lastStation},#{firstStationEarlystTime},#{firstStationLastestTime},#{lastStationEarlystTime},#{lastStationLastestTime},#{allStationName})
+        	(#{name},#{allStationName})
     </insert>
     
     
@@ -48,12 +48,6 @@
         	line 
         SET 
             name=#{name},
-            firstStation=#{firstStation},
-            lastStation=#{lastStation},
-            firstStationEarlystTime=#{firstStationEarlystTime},
-            firstStationLastestTime=#{firstStationLastestTime},
-            lastStationEarlystTime=#{lastStationEarlystTime},
-            lastStationLastestTime=#{lastStationLastestTime},
             allStationName=#{allStationName}
         WHERE 
         	id=#{id}

@@ -17,6 +17,8 @@ public class Bus {
 	String lineName;
 	
 	String driverName;
+	
+	String allStationName;
 
 	public int getId() {
 		return id;
@@ -80,6 +82,14 @@ public class Bus {
 
 	public void setDriverName(String driverName) {
 		this.driverName = driverName;
+	}
+
+	public String getAllStationName() {
+		return allStationName;
+	}
+
+	public void setAllStationName(String allStationName) {
+		this.allStationName = allStationName;
 	}
 	
 	

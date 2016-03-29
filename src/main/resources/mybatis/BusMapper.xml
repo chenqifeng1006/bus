@@ -8,7 +8,7 @@
     <select id="queryList" parameterType="com.utils.common.JPage" resultMap="BusMap"> 	
     	
     	SELECT
-			bus.*, driver.username driverName,line.`name` lineName
+			bus.*, driver.username driverName,line.`name` lineName,line.allStationName
 		FROM
 			bus
 		LEFT JOIN 
@@ -44,12 +44,21 @@
     
     
     <select id="getById" parameterType="com.cc.bus.dto.Bus" resultMap="BusMap">
-		SELECT
-			*
+    
+    	SELECT
+			bus.*, driver.username driverName,line.`name` lineName,line.allStationName
 		FROM
 			bus
+		LEFT JOIN 
+			driver 
+		ON 
+			bus.driverId = driver.id
+		LEFT JOIN
+			line
+		ON
+			bus.lineId = line.id
 		WHERE
-			id=#{id}
+			bus.id=#{id}
     </select>
     
     

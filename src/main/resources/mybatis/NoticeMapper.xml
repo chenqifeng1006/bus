@@ -10,6 +10,8 @@
     		* 
     	FROM 
     		notice 
+   		ORDER BY
+			time DESC
     	LIMIT #{startNum},#{pageCount}
     </select>
     

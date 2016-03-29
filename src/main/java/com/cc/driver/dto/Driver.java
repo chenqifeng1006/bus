@@ -14,7 +14,47 @@ public class Driver {
 	
 	String lisenceno;
 	
+	public int getMaxPerson() {
+		return maxPerson;
+	}
+
+	public void setMaxPerson(int maxPerson) {
+		this.maxPerson = maxPerson;
+	}
+
+	public String getBusNo() {
+		return busNo;
+	}
+
+	public void setBusNo(String busNo) {
+		this.busNo = busNo;
+	}
+
+	public String getLineName() {
+		return lineName;
+	}
+
+	public void setLineName(String lineName) {
+		this.lineName = lineName;
+	}
+
+	public String getAllStationName() {
+		return allStationName;
+	}
+
+	public void setAllStationName(String allStationName) {
+		this.allStationName = allStationName;
+	}
+
+	int maxPerson;
+	
 	int busId;
+	
+	String busNo;
+	
+	String lineName;
+	
+	String allStationName;
 
 	public int getId() {
 		return id;

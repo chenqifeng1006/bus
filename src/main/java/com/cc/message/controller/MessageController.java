@@ -50,8 +50,12 @@ public class MessageController extends BaseController {
 	@ResponseBody
 	public JsonObject queryList(HttpServletRequest request,HttpServletResponse response,
 			@RequestParam(value = "startNum", defaultValue = "0") Integer startNum,
-			@RequestParam(value = "pageCount", defaultValue = "10") Integer pageCount) throws Exception {
+			@RequestParam(value = "pageCount", defaultValue = "10") Integer pageCount,
+			String filter) throws Exception {
 		JPage page = new JPage(startNum,pageCount);
+		if(filter != null){
+			page.setFilter(filter);
+		}
 		List<Message> list = this.messageService.queryList(page);		
 		int count = this.messageService.count();
 		int currentPage = startNum/pageCount + 1;

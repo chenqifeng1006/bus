@@ -6,11 +6,24 @@
     
     
     <select id="queryList" parameterType="com.utils.common.JPage" resultMap="MessageMap">
-    	SELECT 
-    		* 
-    	FROM 
-    		message 
-    	LIMIT #{startNum},#{pageCount}
+    
+    	SELECT
+			message.*,`user`.username
+		FROM
+			message
+		LEFT JOIN
+			`user`
+		ON
+			message.userId = `user`.id
+		<if test="filter != null">
+		WHERE 
+			message.userId = #{filter}
+		</if>
+		
+		ORDER BY
+			time DESC
+		LIMIT 
+			#{startNum},#{pageCount}
     </select>
     
     <select id="count" parameterType="String" resultType="Integer">

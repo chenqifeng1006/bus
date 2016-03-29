@@ -8,9 +8,11 @@ public class Message {
 	
 	String content;
 	
-	int useId;
+	int userId;
 	
 	Date time;
+	
+	String username;
 
 	public int getId() {
 		return id;
@@ -28,12 +30,12 @@ public class Message {
 		this.content = content;
 	}
 
-	public int getUseId() {
-		return useId;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setUseId(int useId) {
-		this.useId = useId;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public Date getTime() {
@@ -43,7 +45,12 @@ public class Message {
 	public void setTime(Date time) {
 		this.time = time;
 	}
-	
-	
-	
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
 }
