@@ -50,7 +50,7 @@ public class DriverController extends BaseController {
 			throw new Exception("密码不正确");
 		}
 		
-		return new JsonData(item);
+		return new JsonData(this.driverService.getById(item));
 	}
 	
 	@RequestMapping(value = "/add")
@@ -73,6 +73,17 @@ public class DriverController extends BaseController {
 		
 		return new JsonData(driver);
 	}
+	
+	@RequestMapping(value = "/update")
+	@ResponseBody
+	public JsonObject update(@Validated Driver driver,HttpServletRequest request,HttpServletResponse response) throws Exception {
+		
+		
+		this.driverService.update(driver);
+		
+		return new JsonData(driver);
+	}
+	
 	
 	@RequestMapping(value = "/updatePassword")
 	@ResponseBody

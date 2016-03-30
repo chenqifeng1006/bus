@@ -8,6 +8,7 @@ function (BasePage,Util,editTpl) {
         init:function(options){
             var that = this;
             that.parent = options.parent;
+            that.busId = options.busId;
             that.id = options.item.id;
             BasePage.fn.init.call(that, options);
         },
@@ -23,6 +24,7 @@ function (BasePage,Util,editTpl) {
                     id:that.id
                 },
                 success:function(data){
+                    data.time = new Date(data.time);
                     that.recordItem = that.pageContent({
                         parent:that.parent,
                         data:data,
@@ -44,6 +46,7 @@ function (BasePage,Util,editTpl) {
                     success:function(data){
                         require(['admin/record/Index'],function(Page){
                             new Page({
+                                busId:that.busId,
                                 parent:that.parent
                             }).initPage()
                         })

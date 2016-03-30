@@ -2,14 +2,15 @@ define([
     'BasePage',
     'Util',
     'Menus',
-    'json!../../../setting/admin/leftMenus.json',
-    'text!../../../template/admin/main/headerTpl.html',
-    'text!../../../template/admin/main/contentTpl.html'
+    'json!../../../setting/driver/leftMenus.json',
+    'text!../../../template/driver/main/headerTpl.html',
+    'text!../../../template/driver/main/contentTpl.html'
 ],
 function (BasePage,Util,Menus,leftMenusJson,headerTpl,contentTpl) {
     return BasePage.extend({
         init:function(options){
             var that = this;
+            that.item = options.driver;
             BasePage.fn.init.call(that, options);
         },
         initPage:function(){
@@ -22,6 +23,7 @@ function (BasePage,Util,Menus,leftMenusJson,headerTpl,contentTpl) {
                 parent:$('#header'),
                 template:headerTpl,
                 data:that.getCookie(),
+                otherData:that.item,
                 methods:{
                 	updateInfoHandler:$.proxy(that._updateInfoHandler,that),
                 	logoutHandler:$.proxy(that._logoutHandler,that)
@@ -31,6 +33,11 @@ function (BasePage,Util,Menus,leftMenusJson,headerTpl,contentTpl) {
                 parent:$('#content'),
                 template:contentTpl,
                 callback:function(){
+                    if(!that.item.busId){
+                        leftMenusJson.splice(0,2);
+                    }else if(!that.item.lineName){
+                        leftMenusJson.splice(1,1);
+                    }
                     Menus.init({
                         data:leftMenusJson,
                         parent:$('#leftContent')
@@ -39,7 +46,7 @@ function (BasePage,Util,Menus,leftMenusJson,headerTpl,contentTpl) {
             });
         },
         _updateInfoHandler:function(){
-            require(['admin/main/Info'],function(Page){
+            require(['driver/main/Info'],function(Page){
                 new Page({
                     parent:$('#rightContent')
                 }).initPage();

@@ -1,14 +1,13 @@
 define([
     'BasePage',
     'Util',
-    'text!../../../template/admin/notice/editTpl.html'
+    'text!../../../template/admin/main/infoTpl.html'
 ],
-function (BasePage,Util,editTpl) {
+function (BasePage,Util,infoTpl) {
     return BasePage.extend({
         init:function(options){
             var that = this;
-            that.parent = options.parent;
-            that.id = options.item.id;
+            that.id = that.getCookie('admin_id');
             BasePage.fn.init.call(that, options);
         },
         initPage:function(){
@@ -18,32 +17,31 @@ function (BasePage,Util,editTpl) {
         _loadMainPage:function(){
             var that = this;
             that.ajax({
-                url:'notice/getById',
+                url:'admin/getById',
                 data:{
                     id:that.id
                 },
                 success:function(data){
-                    data.time = new Date(data.time);
-                    that.noticeItem = that.pageContent({
+                    that.adminData = that.pageContent({
                         parent:that.parent,
+                        template:infoTpl,
                         data:data,
-                        template:editTpl,
                         methods:{
                             updateHandler: $.proxy(that._updateHandler,that)
                         }
-                    });
+                    })
                 }
-            });
-
+            })
         },
         _updateHandler:function(){
             var that = this;
             if(that.checkForm(that.parent)){
                 that.post({
-                    url:'notice/update',
-                    data:that.noticeItem,
+                    url:'admin/update',
+                    data:that.adminData,
                     success:function(data){
-                        require(['admin/notice/Index'],function(Page){
+                        that.setCookie('admin_username',data.username)
+                        require(['admin/main/Index'],function(Page){
                             new Page({
                                 parent:that.parent
                             }).initPage()

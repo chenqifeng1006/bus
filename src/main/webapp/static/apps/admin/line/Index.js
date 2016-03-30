@@ -45,7 +45,7 @@ define([
                         },
                         {
                             name:'线路详情',
-                            index:'allStationname'
+                            index:'allStationName'
                         },
                         {
                             name:'操作',
@@ -69,7 +69,18 @@ define([
                         });
                         $('.delete',that.parent).click(function(e){
                             var item = that.list.getItemByEventTag(e);
-                            console.log(item);
+                            if(confirm('确认删除么？')){
+                                that.post({
+                                    url:'line/delete',
+                                    data:{
+                                        id:item.id
+                                    },
+                                    success:function(){
+                                        that.alert('删除成功');
+                                        that.list.reload();
+                                    }
+                                });
+                            }
                         })
                     }
                 })

@@ -8,7 +8,7 @@ public class Line {
 	
 	String name;
 	
-	String allStationname;
+	String allStationName;
 	
 	int busNum;
 
@@ -28,12 +28,12 @@ public class Line {
 		this.name = name;
 	}
 
-	public String getAllStationname() {
-		return allStationname;
+	public String getAllStationName() {
+		return allStationName;
 	}
 
-	public void setAllStationname(String allStationname) {
-		this.allStationname = allStationname;
+	public void setAllStationName(String allStationName) {
+		this.allStationName = allStationName;
 	}
 
 	public int getBusNum() {

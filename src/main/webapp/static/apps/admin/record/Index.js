@@ -31,6 +31,7 @@ define([
                 var that = this;
                 require(['admin/record/Add'],function(Page){
                     new Page({
+                        busId:that.busId,
                         parent:that.parent
                     }).initPage()
                 })
@@ -43,7 +44,7 @@ define([
                         {
                             name:'时间',
                             fn:function(data){
-                                return Util.formatDate(new Date(data.time),'YYYY-MM-dd hh:mm')
+                                return Util.formatDate(new Date(data.time),'YYYY-MM-DD hh:mm')
                             }
                         },
                         {
@@ -66,6 +67,7 @@ define([
                             var item = that.list.getItemByEventTag(e);
                             require(['admin/record/Edit'],function(Page){
                                 new Page({
+                                    busId:that.busId,
                                     parent:that.parent,
                                     item:item
                                 }).initPage()

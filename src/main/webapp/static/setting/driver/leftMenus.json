@@ -1,0 +1,22 @@
+[
+  {
+    "name":"车辆信息",
+    "jsPath":"driver/line/Index",
+    "icon":"glyphicon-list-alt"
+  },
+  {
+    "name":"路线信息",
+    "jsPath":"admin/notice/Index",
+    "icon":"glyphicon-off"
+  },
+  {
+    "name":"系统公告",
+    "jsPath":"driver/notice/Index",
+    "icon":"glyphicon-bookmark"
+  },
+  {
+    "name":"用户留言",
+    "jsPath":"driver/message/Index",
+    "icon":"glyphicon-book"
+  }
+]

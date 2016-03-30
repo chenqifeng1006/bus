@@ -57,7 +57,13 @@ define([
                         },
                         {
                             name:'操作',
-                            template:'<a class="edit button">编辑</a><a class="delete button">删除</a>'
+                            fn:function(data){
+                                if(data.busId){
+                                    return '<a class="edit button">编辑</a><a class="delete button">删除</a><a class="unbindBus button">车辆解绑</a>'
+                                }else{
+                                    return '<a class="edit button">编辑</a><a class="delete button">删除</a><a class="bindBus button">车辆绑定</a>'
+                                }
+                            }
                         }
                     ],
                     url:'driver/queryList',
@@ -75,9 +81,45 @@ define([
                                 }).initPage()
                             })
                         });
+                        $('.bindBus',that.parent).click(function(e){
+                            var item = that.list.getItemByEventTag(e);
+                            require(['admin/driver/BindBus'],function(Page){
+                                new Page({
+                                    parent:that.parent,
+                                    item:item
+                                }).initPage()
+                            })
+                        });
+                        $('.unbindBus',that.parent).click(function(e){
+                            var item = that.list.getItemByEventTag(e);
+                            if(confirm('确认解绑么？')){
+                                that.post({
+                                    url:'driver/unBindBus',
+                                    data:{
+                                        id:item.id,
+                                        busId:item.busId
+                                    },
+                                    success:function(){
+                                        that.alert('解绑成功');
+                                        that.list.reload();
+                                    }
+                                });
+                            }
+                        });
                         $('.delete',that.parent).click(function(e){
                             var item = that.list.getItemByEventTag(e);
-                            console.log(item);
+                            if(confirm('确认删除么？')){
+                                that.post({
+                                    url:'driver/delete',
+                                    data:{
+                                        id:item.id
+                                    },
+                                    success:function(){
+                                        that.alert('删除成功');
+                                        that.list.reload();
+                                    }
+                                });
+                            }
                         })
                     }
                 })

@@ -81,7 +81,18 @@ define([
                         });
                         $('.delete',that.parent).click(function(e){
                             var item = that.list.getItemByEventTag(e);
-                            console.log(item);
+                            if(confirm('确认删除么？')){
+                                that.post({
+                                    url:'admin/delete',
+                                    data:{
+                                        id:item.id
+                                    },
+                                    success:function(){
+                                        that.alert('删除成功');
+                                        that.list.reload();
+                                    }
+                                });
+                            }
                         })
                     }
                 })

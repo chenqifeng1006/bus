@@ -2,7 +2,7 @@ define([
         'BasePage',
         'Util',
         'List',
-        'text!../../../template/admin/message/listTpl.html'
+        'text!../../../template/driver/notice/listTpl.html'
     ],
     function (BasePage,Util,List,listTpl) {
         return BasePage.extend({
@@ -20,7 +20,9 @@ define([
                 var that = this;
                 that.pageContent({
                     parent:that.parent,
-                    template:listTpl
+                    template:listTpl,
+                    methods:{
+                    }
                 });
             },
             _loadListPage:function(){
@@ -29,13 +31,9 @@ define([
                     parent:$('#gridList',that.parent),
                     colModel:[
                         {
-                            name:'用户名',
-                            index:'username'
-                        },
-                        {
                             name:'时间',
                             fn:function(data){
-                                return Util.formatDate(new Date(data.time),'YYYY-MM-DD hh:mm');
+                                return Util.formatDate(new Date(data.time),'YYYY-MM-DD hh:mm')
                             }
                         },
                         {
@@ -43,7 +41,7 @@ define([
                             index:'content'
                         }
                     ],
-                    url:'message/queryList',
+                    url:'notice/queryList',
                     data:{
                         startNum:0,
                         pageCount:10

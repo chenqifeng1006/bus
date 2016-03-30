@@ -2,7 +2,7 @@ define([
         'BasePage',
         'Util',
         'List',
-        'text!../../../template/admin/message/listTpl.html'
+        'text!../../../template/driver/message/listTpl.html'
     ],
     function (BasePage,Util,List,listTpl) {
         return BasePage.extend({

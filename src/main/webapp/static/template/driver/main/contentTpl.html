@@ -1,0 +1,15 @@
+<div class="flex hp100">
+    <div class="hp100" id="leftContent">
+
+    </div>
+    <div id="rightContent" class="right_content flex1">
+        <div class="welcome">
+         	欢迎使用本系统<br><br>
+            <%if(!otherData.busId){%>
+                管理员尚未给您分配车辆，请联系管理员以获取您的指定车辆!
+            <%}else if(!otherData.lineName){%>
+                管理员尚未给您分配行车路线，请联系管理员以获取您的行车路线!
+            <%}%>
+        </div>
+    </div>
+</div>
