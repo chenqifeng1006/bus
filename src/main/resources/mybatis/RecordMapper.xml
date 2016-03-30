@@ -11,7 +11,12 @@
     		* 
     	FROM 
     		record 
-    	LIMIT #{startNum},#{pageCount}
+   		<if test="filter != null">
+		WHERE 
+			record.busId = #{filter}
+		</if>
+    	LIMIT 
+    		#{startNum},#{pageCount}
     </select>
     
     <select id="count" parameterType="String" resultType="Integer">

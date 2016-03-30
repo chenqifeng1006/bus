@@ -2,7 +2,7 @@ define([
         'BasePage',
         'Util',
         'List',
-        'text!../../../template/admin/bus/listTpl.html'
+        'text!../../../template/admin/line/listTpl.html'
     ],
     function (BasePage,Util,List,listTpl) {
         return BasePage.extend({
@@ -28,7 +28,7 @@ define([
             },
             _addHandler:function(){
                 var that = this;
-                require(['admin/bus/Add'],function(Page){
+                require(['admin/line/Add'],function(Page){
                     new Page({
                         parent:that.parent
                     }).initPage()
@@ -40,31 +40,19 @@ define([
                     parent:$('#gridList',that.parent),
                     colModel:[
                         {
-                            name:'编号',
-                            index:'busNo'
+                            name:'线路名称',
+                            index:'name'
                         },
                         {
-                            name:'车牌号',
-                            index:'lisenceNo'
-                        },
-                        {
-                            name:'荷载人数',
-                            index:'maxPerson'
-                        },
-                        {
-                            name:'驾驶人',
-                            index:'driverName'
-                        },
-                        {
-                            name:'行驶线路',
-                            index:'lineName'
+                            name:'线路详情',
+                            index:'allStationname'
                         },
                         {
                             name:'操作',
-                            template:'<a class="recordDetail button">保养记录</a><a class="edit button">编辑</a><a class="delete button">删除</a>'
+                            template:'<a class="edit button">编辑</a><a class="delete button">删除</a>'
                         }
                     ],
-                    url:'bus/queryList',
+                    url:'line/queryList',
                     data:{
                         startNum:0,
                         pageCount:10
@@ -72,19 +60,9 @@ define([
                     bindEvent:function(){
                         $('.edit',that.parent).click(function(e){
                             var item = that.list.getItemByEventTag(e);
-                            require(['admin/bus/Edit'],function(Page){
+                            require(['admin/line/Edit'],function(Page){
                                 new Page({
                                     parent:that.parent,
-                                    item:item
-                                }).initPage()
-                            })
-                        });
-                        $('.recordDetail',that.parent).click(function(e){
-                            var item = that.list.getItemByEventTag(e);
-                            require(['admin/record/Index'],function(Page){
-                                new Page({
-                                    parent:that.parent,
-                                    busId:item.id,
                                     item:item
                                 }).initPage()
                             })

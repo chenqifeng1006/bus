@@ -1,5 +1,6 @@
 package com.cc.record.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.cc.admin.dto.Admin;
 import com.cc.base.BaseController;
-import com.cc.notice.dto.Notice;
 import com.cc.record.dto.Record;
 import com.cc.record.service.RecordService;
 import com.utils.common.JPage;
@@ -40,7 +39,7 @@ public class RecordController extends BaseController {
 	@RequestMapping(value = "/add")
 	@ResponseBody
 	public JsonObject add(@Validated Record record,HttpServletRequest request,HttpServletResponse response) throws Exception {
-		
+		record.setTime(new Date());
 		int id = this.recordService.add(record);
 		
 		return new JsonData(id);
@@ -62,8 +61,11 @@ public class RecordController extends BaseController {
 	@ResponseBody
 	public JsonObject queryList(HttpServletRequest request,HttpServletResponse response,
 			@RequestParam(value = "startNum", defaultValue = "0") Integer startNum,
-			@RequestParam(value = "pageCount", defaultValue = "10") Integer pageCount) throws Exception {
+			@RequestParam(value = "pageCount", defaultValue = "10") Integer pageCount,String filter) throws Exception {
 		JPage page = new JPage(startNum,pageCount);
+		if(filter != null){
+			page.setFilter(filter);
+		}
 		List<Record> list = this.recordService.queryList(page);		
 		int count = this.recordService.count();
 		int currentPage = startNum/pageCount + 1;
