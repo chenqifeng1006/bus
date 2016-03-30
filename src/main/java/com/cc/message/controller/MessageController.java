@@ -1,5 +1,6 @@
 package com.cc.message.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,6 +40,7 @@ public class MessageController extends BaseController {
 	@ResponseBody
 	public JsonObject add(@Validated Message message,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		
+		message.setTime(new Date());
 		int id = this.messageService.add(message);
 		
 		return new JsonData(id);

@@ -1,5 +1,6 @@
 package com.cc.notice.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cc.base.BaseController;
-import com.cc.message.dto.Message;
 import com.cc.notice.dto.Notice;
 import com.cc.notice.service.NoticeService;
 import com.utils.common.JPage;
@@ -39,7 +39,17 @@ public class NoticeController extends BaseController {
 	@ResponseBody
 	public JsonObject add(@Validated Notice notice,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		
+		notice.setTime(new Date());
 		int id = this.noticeService.add(notice);
+		
+		return new JsonData(id);
+	}
+	
+	@RequestMapping(value = "/update")
+	@ResponseBody
+	public JsonObject update(@Validated Notice notice,HttpServletRequest request,HttpServletResponse response) throws Exception {
+		
+		int id = this.noticeService.update(notice);
 		
 		return new JsonData(id);
 	}

@@ -2,10 +2,11 @@ define([
     'BasePage',
     'Util',
     'Menus',
+    'json!../../../setting/admin/leftMenus.json',
     'text!../../../template/admin/main/headerTpl.html',
     'text!../../../template/admin/main/contentTpl.html'
 ],
-function (BasePage,Util,Menus,headerTpl,contentTpl) {
+function (BasePage,Util,Menus,leftMenusJson,headerTpl,contentTpl) {
     return BasePage.extend({
         init:function(options){
             var that = this;
@@ -14,7 +15,6 @@ function (BasePage,Util,Menus,headerTpl,contentTpl) {
         initPage:function(){
             var that = this;
             that._loadMainPage();
-            that._bindEvent();
         },
         _loadMainPage:function(){
             var that = this;
@@ -32,33 +32,22 @@ function (BasePage,Util,Menus,headerTpl,contentTpl) {
                 template:contentTpl,
                 callback:function(){
                     Menus.init({
+                        data:leftMenusJson,
                         parent:$('#leftContent')
                     });
                 }
             });
         },
         _updateInfoHandler:function(){
-        	debugger
+        	//TODO
+            require(['admin/info/Index'],function(Page){
+                new Page({
+                    parent:$('#rightContent')
+                }).initPage();
+            })
         },
         _logoutHandler:function(){
-        	debugger
-        },
-        _bindEvent:function(){
-        	var that = this;
-        	$('#personalInfo').click(function(){
-        		require(['login/PersonalInfo'],function(Page){
-        			new Page({
-        				parent:$('#rightContent')
-        			}).initPage();
-        			Menus.init({
-                        parent:$('#leftContent')
-                    });
-        		})
-        	})
-        	$('#logout').click(function(){
-        		that.removeCookie('loginId');
-        		location.reload()
-        	})
+            location.reload()
         }
     });
 });

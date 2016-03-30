@@ -20,6 +20,7 @@ define([
             }
 
         };
+        options.url = 'http://localhost:8080/bus/' + options.url
         $.ajax(options)
     };
 

@@ -41,7 +41,14 @@
         	(#{content},#{time})
     </insert>
     
-    
+    <update id="update"  parameterType="com.cc.notice.dto.Notice">
+        UPDATE 
+        	notice 
+        SET 
+        	content=#{content}
+        WHERE 
+        	id=#{id}
+    </update>
     
     
     <delete id="delete">

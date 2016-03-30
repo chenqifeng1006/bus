@@ -1,0 +1,16 @@
+<div class="form">
+    <div class="form-group">
+        <label data-for="busNo">车辆编号</label>
+        <input type="text" data-required="true" class="form-control" name="busNo" placeholder="车辆编号"  v-model="busNo">
+    </div>
+    <div class="form-group">
+        <label data-for="lisenceNo">车牌号</label>
+        <input type="text" data-required="true" class="form-control" name="lisenceNo" placeholder="车牌号" v-model="lisenceNo">
+    </div>
+    <div class="form-group">
+        <label data-for="maxPerson">荷载人数</label>
+        <input type="text" data-required="true" class="form-control" name="maxPerson" placeholder="荷载人数" v-model="maxPerson">
+    </div>
+
+    <button v-on:click="updateHandler" type="button" class="btn btn-warning right">提交</button>
+</div>

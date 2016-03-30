@@ -25,7 +25,7 @@ define([
                     parent:that.parent,
                     data:{
                     	startTime:Util.formatDate(new Date(),'YYYY-MM-DD 00:00'),
-                    	endTime:Util.formatDate(new Date(new Date().getTime()+24*60*60*1000),'YYYY-MM-DD 00:00'),
+                    	endTime:Util.formatDate(new Date(new Date().getTime()+24*60*60*1000),'YYYY-MM-DD 00:00')
                     },
                     template:chartTpl
                 });

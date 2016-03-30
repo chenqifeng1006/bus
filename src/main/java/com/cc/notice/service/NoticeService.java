@@ -29,6 +29,10 @@ public class NoticeService {
 		return this.noticeMapper.add(notice);
 	}
 	
+	public int update(Notice notice){
+		return this.noticeMapper.update(notice);
+	}
+	
 	public void delete(Notice notice){
 		this.noticeMapper.delete(notice);
 	}

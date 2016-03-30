@@ -9,11 +9,12 @@
 define([
         'Template',
         'Util',
+        'vue',
         'text!../template/common/listTpl.html',
         'text!../template/common/listFooterTpl.html',
         'Ajax'
     ],
-    function (Template,Util,listTpl,listFooterTpl) {
+    function (Template,Util,Vue,listTpl,listFooterTpl) {
         var List = function(){};
 
         List.prototype.init = function(options){

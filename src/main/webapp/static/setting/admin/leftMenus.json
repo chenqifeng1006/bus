@@ -1,0 +1,32 @@
+[
+  {
+    "name":"管理员",
+    "jsPath":"admin/admin/Index",
+    "icon":"glyphicon-list-alt"
+  },
+  {
+    "name":"司机管理",
+    "jsPath":"admin/driver/Index",
+    "icon":"glyphicon-bookmark"
+  },
+  {
+    "name":"车辆管理",
+    "jsPath":"admin/bus/Index",
+    "icon":"glyphicon-book"
+  },
+  {
+    "name":"路线管理",
+    "jsPath":"admin/line/Index",
+    "icon":"glyphicon-file"
+  },
+  {
+    "name":"公告管理",
+    "jsPath":"admin/notice/Index",
+    "icon":"glyphicon-off"
+  },
+  {
+    "name":"留言管理",
+    "jsPath":"admin/message/Index",
+    "icon":"glyphicon-tag"
+  }
+]

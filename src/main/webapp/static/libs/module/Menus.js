@@ -8,11 +8,9 @@
 
 define([
         'Template',
-        'json!../setting/leftMenus.json',
         'text!../template/common/menusTpl.html'
     ],
-    function (Template,leftMenus,menusTpl) {
-        var template = Template.getTemplate(menusTpl,leftMenus)
+    function (Template,menusTpl) {
 
         return {
             bindEvent:function(){
@@ -43,8 +41,9 @@ define([
                 });
             },
             init:function(options){
-                var parent = options.parent;
-                parent.html(template);
+                var parent = options.parent,
+                    data = options.data || {};
+                parent.html( Template.getTemplate(menusTpl,data));
                 this.bindEvent();
             }
         }
