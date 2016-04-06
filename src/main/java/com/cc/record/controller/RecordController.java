@@ -67,7 +67,13 @@ public class RecordController extends BaseController {
 			page.setFilter(filter);
 		}
 		List<Record> list = this.recordService.queryList(page);		
-		int count = this.recordService.count();
+		int count;
+		if(filter != null){
+			count = this.recordService.countByBusId(filter);
+		}else{
+			count = this.recordService.count();
+		}
+		
 		int currentPage = startNum/pageCount + 1;
 		PageDTO dto = new PageDTO();		
 		dto.setList(list);

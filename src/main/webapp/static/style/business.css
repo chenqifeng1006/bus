@@ -34,7 +34,7 @@
 }
 .main_header .log{
     font-family: 微软雅黑, 黑体, sans-serif;
-    font-size: 20px;
+    font-size: 18px;
     padding: 6px 0 6px 70px;
     border-bottom: 4px solid #ffa800;
     line-height: 63px;
@@ -58,7 +58,7 @@
     color: rgb(102, 102, 102);
     display: block;
     font-family: 微软雅黑, 黑体, sans-serif;
-    font-size: 22px;
+    font-size: 18px;
     font-stretch: normal;
     font-style: normal;
     font-variant: normal;
@@ -95,7 +95,7 @@
 }
 
 .right_content table.table td,.right_content table.table th{
-    line-height: 2.428571;
+    /* line-height: 2.428571; */
 }
 .right_content table.table tr:hover{
     background-color: #f5f5f5;

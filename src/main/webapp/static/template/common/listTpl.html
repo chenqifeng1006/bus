@@ -2,7 +2,7 @@
     <thead>
         <tr>
             <%for(var i = 0; i<otherData.colModel.length; i++){%>
-                <th><%=otherData.colModel[i].name%></th>
+                <th style="<%=otherData.colModel[i].width?'width:' + otherData.colModel[i].width + 'px':''%>"><%=otherData.colModel[i].name%></th>
             <%}%>
         </tr>
     </thead>

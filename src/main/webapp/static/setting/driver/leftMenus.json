@@ -1,12 +1,12 @@
 [
   {
-    "name":"车辆信息",
-    "jsPath":"driver/line/Index",
+    "name":"我的车辆",
+    "jsPath":"driver/bus/Index",
     "icon":"glyphicon-list-alt"
   },
   {
-    "name":"路线信息",
-    "jsPath":"admin/notice/Index",
+    "name":"我的路线",
+    "jsPath":"driver/line/Index",
     "icon":"glyphicon-off"
   },
   {

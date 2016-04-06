@@ -56,6 +56,10 @@ public class UserController extends BaseController {
 	@ResponseBody
 	public JsonObject add(@Validated User user,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		
+		if(user.getUsername() == null){
+			user.setUsername(user.getLoginId());
+		}
+		
 		int id = this.userService.add(user);
 		
 		return new JsonData(id);
@@ -69,6 +73,16 @@ public class UserController extends BaseController {
 		
 		
 		this.userService.updateInfo(user);
+		
+		return new JsonData(user);
+	}
+	
+	@RequestMapping(value = "/update")
+	@ResponseBody
+	public JsonObject update(@Validated User user,HttpServletRequest request,HttpServletResponse response) throws Exception {
+		
+		
+		this.userService.update(user);
 		
 		return new JsonData(user);
 	}

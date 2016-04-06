@@ -26,6 +26,14 @@
 			record
     </select>
     
+    <select id="countByBusId" parameterType="String" resultType="Integer">
+		SELECT
+			COUNT(id)
+		FROM
+			record
+		where busId=#{busId}
+    </select>
+    
     <select id="getById" parameterType="com.cc.record.dto.Record" resultMap="RecordMap">
 		SELECT
 			*

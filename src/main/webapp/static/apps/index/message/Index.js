@@ -2,7 +2,7 @@ define([
         'BasePage',
         'Util',
         'List',
-        'text!../../../template/admin/message/listTpl.html'
+        'text!../../../template/index/message/listTpl.html'
     ],
     function (BasePage,Util,List,listTpl) {
         return BasePage.extend({
@@ -20,8 +20,19 @@ define([
                 var that = this;
                 that.pageContent({
                     parent:that.parent,
-                    template:listTpl
+                    template:listTpl,
+                    methods:{
+                        addHandler: $.proxy(that._addHandler,that)
+                    }
                 });
+            },
+            _addHandler:function(){
+                var that = this;
+                require(['index/message/Add'],function(Page){
+                    new Page({
+                        parent:that.parent
+                    }).initPage()
+                })
             },
             _loadListPage:function(){
                 var that = this;
@@ -30,7 +41,7 @@ define([
                     colModel:[
                         {
                             name:'用户名',
-                            width:'100',
+                            width:'75',
                             index:'username'
                         },
                         {

@@ -1,0 +1,17 @@
+[
+  {
+    "name":"路线详情",
+    "jsPath":"index/line/Index",
+    "icon":"glyphicon-list-alt"
+  },
+  {
+    "name":"系统公告",
+    "jsPath":"index/notice/Index",
+    "icon":"glyphicon-bookmark"
+  },
+  {
+    "name":"留言板",
+    "jsPath":"index/message/Index",
+    "icon":"glyphicon-book"
+  }
+]

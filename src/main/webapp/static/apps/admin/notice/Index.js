@@ -41,6 +41,7 @@ define([
                     colModel:[
                         {
                             name:'时间',
+                            width:'135',
                             fn:function(data){
                                 return Util.formatDate(new Date(data.time),'YYYY-MM-DD hh:mm')
                             }

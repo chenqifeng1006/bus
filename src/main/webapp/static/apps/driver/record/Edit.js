@@ -1,13 +1,15 @@
 define([
     'BasePage',
     'Util',
-    'text!../../../template/driver/main/infoTpl.html'
+    'text!../../../template/driver/record/editTpl.html'
 ],
-function (BasePage,Util,infoTpl) {
+function (BasePage,Util,editTpl) {
     return BasePage.extend({
         init:function(options){
             var that = this;
-            that.id = that.getCookie('driver_id');
+            that.parent = options.parent;
+            that.busId = options.busId;
+            that.id = options.item.id;
             BasePage.fn.init.call(that, options);
         },
         initPage:function(){
@@ -17,33 +19,34 @@ function (BasePage,Util,infoTpl) {
         _loadMainPage:function(){
             var that = this;
             that.ajax({
-                url:'driver/getById',
+                url:'record/getById',
                 data:{
                     id:that.id
                 },
                 success:function(data){
-                    that.driverData = that.pageContent({
+                    data.time = new Date(data.time);
+                    that.recordItem = that.pageContent({
                         parent:that.parent,
-                        template:infoTpl,
                         data:data,
+                        template:editTpl,
                         methods:{
                             updateHandler: $.proxy(that._updateHandler,that)
                         }
-                    })
+                    });
                 }
-            })
+            });
+
         },
         _updateHandler:function(){
             var that = this;
             if(that.checkForm(that.parent)){
                 that.post({
-                    url:'driver/update',
-                    data:that.driverData,
+                    url:'record/update',
+                    data:that.recordItem,
                     success:function(data){
-                        that.setCookie('driver_username',data.username)
-                        require(['driver/main/Index'],function(Page){
+                        require(['driver/record/Index'],function(Page){
                             new Page({
-                            	driver:that.driverData,
+                                busId:that.busId,
                                 parent:that.parent
                             }).initPage()
                         })

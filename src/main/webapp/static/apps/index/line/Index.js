@@ -2,7 +2,7 @@ define([
         'BasePage',
         'Util',
         'List',
-        'text!../../../template/admin/message/listTpl.html'
+        'text!../../../template/index/line/listTpl.html'
     ],
     function (BasePage,Util,List,listTpl) {
         return BasePage.extend({
@@ -20,7 +20,10 @@ define([
                 var that = this;
                 that.pageContent({
                     parent:that.parent,
-                    template:listTpl
+                    template:listTpl,
+                    methods:{
+                        addHandler: $.proxy(that._addHandler,that)
+                    }
                 });
             },
             _loadListPage:function(){
@@ -29,23 +32,15 @@ define([
                     parent:$('#gridList',that.parent),
                     colModel:[
                         {
-                            name:'用户名',
-                            width:'100',
-                            index:'username'
+                            name:'线路名称',
+                            index:'name'
                         },
                         {
-                            name:'时间',
-                            width:'135',
-                            fn:function(data){
-                                return Util.formatDate(new Date(data.time),'YYYY-MM-DD hh:mm');
-                            }
-                        },
-                        {
-                            name:'内容',
-                            index:'content'
+                            name:'线路详情',
+                            index:'allStationName'
                         }
                     ],
-                    url:'message/queryList',
+                    url:'line/queryList',
                     data:{
                         startNum:0,
                         pageCount:10

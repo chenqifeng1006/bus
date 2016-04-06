@@ -2,7 +2,7 @@ define([
         'BasePage',
         'Util',
         'List',
-        'text!../../../template/admin/record/listTpl.html'
+        'text!../../../template/driver/record/listTpl.html'
     ],
     function (BasePage,Util,List,listTpl) {
         return BasePage.extend({
@@ -29,7 +29,7 @@ define([
             },
             _addHandler:function(){
                 var that = this;
-                require(['admin/record/Add'],function(Page){
+                require(['driver/record/Add'],function(Page){
                     new Page({
                         busId:that.busId,
                         parent:that.parent
@@ -43,7 +43,6 @@ define([
                     colModel:[
                         {
                             name:'时间',
-                            width:'135px',
                             fn:function(data){
                                 return Util.formatDate(new Date(data.time),'YYYY-MM-DD hh:mm')
                             }
@@ -66,7 +65,7 @@ define([
                     bindEvent:function(){
                         $('.edit',that.parent).click(function(e){
                             var item = that.list.getItemByEventTag(e);
-                            require(['admin/record/Edit'],function(Page){
+                            require(['driver/record/Edit'],function(Page){
                                 new Page({
                                     busId:that.busId,
                                     parent:that.parent,

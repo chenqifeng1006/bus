@@ -4,10 +4,10 @@ html, body ,.page{
     height: 100%;
     font-family: Helvetica,sans-serif;
     -webkit-text-size-adjust: none; 
-    font-size: 25px;}
+    font-size: 20px;}
     
 table{
-	font-size: 18px;
+	font-size: 14px;
 }
 
 body {

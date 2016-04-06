@@ -1,13 +1,13 @@
 define([
     'BasePage',
     'Util',
-    'text!../../../template/driver/main/infoTpl.html'
+    'text!../../../template/index/main/infoTpl.html'
 ],
 function (BasePage,Util,infoTpl) {
     return BasePage.extend({
         init:function(options){
             var that = this;
-            that.id = that.getCookie('driver_id');
+            that.id = that.getCookie('user_id');
             BasePage.fn.init.call(that, options);
         },
         initPage:function(){
@@ -17,12 +17,12 @@ function (BasePage,Util,infoTpl) {
         _loadMainPage:function(){
             var that = this;
             that.ajax({
-                url:'driver/getById',
+                url:'user/getById',
                 data:{
                     id:that.id
                 },
                 success:function(data){
-                    that.driverData = that.pageContent({
+                    that.userData = that.pageContent({
                         parent:that.parent,
                         template:infoTpl,
                         data:data,
@@ -37,13 +37,12 @@ function (BasePage,Util,infoTpl) {
             var that = this;
             if(that.checkForm(that.parent)){
                 that.post({
-                    url:'driver/update',
-                    data:that.driverData,
+                    url:'user/update',
+                    data:that.userData,
                     success:function(data){
-                        that.setCookie('driver_username',data.username)
-                        require(['driver/main/Index'],function(Page){
+                        that.setCookie('user_username',data.username)
+                        require(['index/main/Index'],function(Page){
                             new Page({
-                            	driver:that.driverData,
                                 parent:that.parent
                             }).initPage()
                         })

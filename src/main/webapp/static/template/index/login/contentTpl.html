@@ -1,0 +1,28 @@
+<div class="login_content flex">
+    <div class="flex1">
+
+    </div>
+    <div class="page input_page">
+        <ul class="flex">
+            <li data-for="loginId" class="w100 fs20">
+             	账户名
+            </li>
+            <li>
+                <input name="loginId" type="text" data-required="true" v-model="loginId" class="form-control" placeholder="账户名">
+            </li>
+        </ul>
+        <ul class="flex">
+            <li data-for="password" class="w100 fs20">
+             	密码
+            </li>
+            <li>
+                <input name="password" type="password" data-required="true" data-minLen="6" data-maxLen="12" v-model="password" class="form-control" placeholder="密码">
+            </li>
+        </ul>
+        <button v-on:click="loginHandler" id="login" type="button" class="btn btn-primary mt20 ml100" >登录</button>
+    </div>
+    
+    <div class="flex1">
+
+    </div>
+</div>

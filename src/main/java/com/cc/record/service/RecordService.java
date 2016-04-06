@@ -24,6 +24,10 @@ public class RecordService {
 		return this.recordMapper.count();
 	}
 	
+	public int countByBusId(String busId){
+		return this.recordMapper.countByBusId(busId);
+	}
+	
 	
 	public void update(Record record){
 		this.recordMapper.update(record);

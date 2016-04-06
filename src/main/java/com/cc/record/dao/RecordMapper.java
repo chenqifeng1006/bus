@@ -12,6 +12,7 @@ public interface RecordMapper {
 	List<Record> queryList(JPage page);
 	
 	int count();
+	int countByBusId(String busId);
 	
 	void update(Record record);
 	
